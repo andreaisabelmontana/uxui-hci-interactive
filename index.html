@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>UX · UI · HCI — Interactive Concept Map</title>
+<meta name="description" content="Interactive companion to the UX/UI/HCI course — Garrett's 5 planes, Nielsen heuristics, Fitts's Law, Gestalt, accessibility, research methods, and more." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c5cff'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='34' font-family='system-ui' fill='white' font-weight='800'%3EUX%3C/text%3E%3C/svg%3E" />
+</head>
+<body data-theme="dark">
+
+<!-- ============================== NAV ============================== -->
+<header class="nav">
+  <a href="#top" class="brand">
+    <span class="brand-dot"></span><span>UX·UI·HCI</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#planes">5 Planes</a>
+    <a href="#timeline">History</a>
+    <a href="#persona">Persona</a>
+    <a href="#scope">Scope</a>
+    <a href="#structure">Structure</a>
+    <a href="#skeleton">Wireframe</a>
+    <a href="#surface">Surface</a>
+    <a href="#heuristics">Heuristics</a>
+    <a href="#fitts">Fitts</a>
+    <a href="#gestalt">Gestalt</a>
+    <a href="#research">Research</a>
+    <a href="#a11y">A11y</a>
+    <a href="#mobile">Mobile</a>
+    <a href="#future">Future</a>
+    <a href="#quiz">Quiz</a>
+  </nav>
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">◐</button>
+</header>
+
+<!-- ============================== HERO ============================== -->
+<section id="top" class="hero">
+  <div class="hero-inner">
+    <p class="kicker">An interactive companion to UX · UI · Human–Computer Interaction</p>
+    <h1>Every <span class="grad">core concept</span> from the course — but you can <em>touch it</em>.</h1>
+    <p class="lede">Click, drag, score, simulate. Built around Jesse Garrett's five planes, Nielsen's heuristics, Fitts's Law, Gestalt principles, accessibility, research methods, and emerging trends.</p>
+    <div class="hero-cta">
+      <a href="#planes" class="btn btn-primary">Start with the 5 Planes →</a>
+      <a href="#quiz" class="btn btn-ghost">Test yourself</a>
+    </div>
+    <div class="hero-meta">
+      <span>30 sessions</span><span>·</span><span>15 interactive modules</span><span>·</span><span>0 passive slides</span>
+    </div>
+  </div>
+  <div class="hero-orbs" aria-hidden="true">
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  </div>
+</section>
+
+<!-- ============================== 5 PLANES ============================== -->
+<section id="planes" class="section">
+  <h2><span class="num">01</span> The Five Planes of User Experience</h2>
+  <p class="subtitle">Jesse Garrett's model — abstract at the bottom, concrete at the top. Click a plane to expand. Drag the slider to peel through.</p>
+
+  <div class="planes-wrap">
+    <div class="planes-stack" id="planesStack">
+      <div class="plane" data-i="4" data-name="Surface" data-q="What does it look and feel like?" data-detail="Visual design: color, typography, iconography, imagery, motion. The sensory experience users perceive first.">
+        <span class="plane-label">Surface</span><span class="plane-q">Sensory · Visual design</span>
+      </div>
+      <div class="plane" data-i="3" data-name="Skeleton" data-q="Where are things on the page?" data-detail="Interface, navigation, and information design. Wireframes live here. Layout decisions that make content reachable.">
+        <span class="plane-label">Skeleton</span><span class="plane-q">Layout · Wireframes</span>
+      </div>
+      <div class="plane" data-i="2" data-name="Structure" data-q="How is it organised?" data-detail="Interaction design + information architecture. Flow, state, error handling, sitemap, taxonomy.">
+        <span class="plane-label">Structure</span><span class="plane-q">IA · Interaction design</span>
+      </div>
+      <div class="plane" data-i="1" data-name="Scope" data-q="What features and content?" data-detail="Functional requirements (what it does) and content requirements (what it has). The 'spec'.">
+        <span class="plane-label">Scope</span><span class="plane-q">Requirements · Features</span>
+      </div>
+      <div class="plane" data-i="0" data-name="Strategy" data-q="Why are we building this?" data-detail="User needs + product objectives. Target audience, success metrics, business goals. Everything else descends from here.">
+        <span class="plane-label">Strategy</span><span class="plane-q">Why? · Objectives & user needs</span>
+      </div>
+    </div>
+
+    <aside class="plane-detail" id="planeDetail">
+      <p class="pd-name">Hover or click a plane</p>
+      <p class="pd-q">From abstract <span class="arrow">↑</span> to concrete</p>
+      <p class="pd-text">The lower the plane, the more abstract. Decisions on lower planes constrain everything above them — getting Strategy wrong cascades all the way up to Surface.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================== HCI TIMELINE ============================== -->
+<section id="timeline" class="section">
+  <h2><span class="num">02</span> A Brief History of HCI</h2>
+  <p class="subtitle">Scroll the timeline. Click a marker to read more.</p>
+  <div class="timeline" id="timelineList"></div>
+</section>
+
+<!-- ============================== PERSONA ============================== -->
+<section id="persona" class="section">
+  <h2><span class="num">03</span> Persona Builder</h2>
+  <p class="subtitle">Personas turn vague "users" into concrete people you can design *for*. Fill the form — generate a card.</p>
+
+  <div class="persona-wrap">
+    <form class="persona-form" id="personaForm">
+      <label>Name <input id="pName" value="Maya Reyes" /></label>
+      <label>Age <input id="pAge" type="number" value="28" min="5" max="100" /></label>
+      <label>Role / occupation <input id="pRole" value="Junior product manager" /></label>
+      <label>Tech comfort
+        <input id="pTech" type="range" min="1" max="5" value="4" />
+        <span id="pTechVal">4 / 5</span>
+      </label>
+      <label>Primary goal <input id="pGoal" value="Run usability tests without IT involvement" /></label>
+      <label>Biggest frustration <input id="pFrust" value="Tools that hide pricing behind a sales call" /></label>
+      <label>Quote <input id="pQuote" value="If I have to read the manual, the design failed." /></label>
+      <label>Device <select id="pDevice"><option>Mobile-first</option><option>Laptop</option><option>Tablet</option><option>Multi-device</option></select></label>
+      <button type="button" class="btn btn-primary" id="randPersona">Randomise</button>
+    </form>
+
+    <article class="persona-card" id="personaCard">
+      <div class="pc-avatar" id="pcAvatar">M</div>
+      <h3 class="pc-name">Maya Reyes <span class="pc-age">28</span></h3>
+      <p class="pc-role">Junior product manager</p>
+      <blockquote class="pc-quote">"If I have to read the manual, the design failed."</blockquote>
+      <div class="pc-grid">
+        <div><label>Tech comfort</label><div class="bar"><span style="width:80%"></span></div></div>
+        <div><label>Device</label><p class="val" id="pcDevice">Mobile-first</p></div>
+        <div><label>Goal</label><p class="val" id="pcGoal">Run usability tests without IT involvement</p></div>
+        <div><label>Frustration</label><p class="val" id="pcFrust">Tools that hide pricing behind a sales call</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== SCOPE / MOSCOW ============================== -->
+<section id="scope" class="section">
+  <h2><span class="num">04</span> Scope Plane — Prioritise Requirements</h2>
+  <p class="subtitle">Drag each requirement into Must / Should / Could / Won't (MoSCoW). The scope is whatever you commit to.</p>
+
+  <div class="moscow">
+    <div class="moscow-pool" data-bucket="pool">
+      <h4>Backlog</h4>
+      <div class="chip" draggable="true">Email + password login</div>
+      <div class="chip" draggable="true">Dark mode</div>
+      <div class="chip" draggable="true">Onboarding tutorial</div>
+      <div class="chip" draggable="true">Multi-language support</div>
+      <div class="chip" draggable="true">Push notifications</div>
+      <div class="chip" draggable="true">Offline mode</div>
+      <div class="chip" draggable="true">Social-graph friend finder</div>
+      <div class="chip" draggable="true">VR companion app</div>
+      <div class="chip" draggable="true">CSV export</div>
+      <div class="chip" draggable="true">SSO with Google</div>
+      <div class="chip" draggable="true">Animated splash screen</div>
+      <div class="chip" draggable="true">Accessible color contrast (WCAG AA)</div>
+    </div>
+    <div class="moscow-grid">
+      <div class="moscow-bucket must" data-bucket="must"><h4>Must have</h4></div>
+      <div class="moscow-bucket should" data-bucket="should"><h4>Should have</h4></div>
+      <div class="moscow-bucket could" data-bucket="could"><h4>Could have</h4></div>
+      <div class="moscow-bucket wont" data-bucket="wont"><h4>Won't (this release)</h4></div>
+    </div>
+  </div>
+  <p class="hint">💡 If everything is "Must", nothing is. Garrett: scope creep is the silent killer of UX.</p>
+</section>
+
+<!-- ============================== STRUCTURE / CARD SORT ============================== -->
+<section id="structure" class="section">
+  <h2><span class="num">05</span> Structure Plane — Card Sorting (IA)</h2>
+  <p class="subtitle">Drag the items into categories that make sense to *you*. Then compare with how real users would group them — that's how information architecture is born.</p>
+
+  <div class="cardsort">
+    <div class="cs-pool" data-bucket="pool" id="csPool">
+      <div class="card" draggable="true">Shopping cart</div>
+      <div class="card" draggable="true">Order history</div>
+      <div class="card" draggable="true">Return an item</div>
+      <div class="card" draggable="true">Track shipment</div>
+      <div class="card" draggable="true">Saved addresses</div>
+      <div class="card" draggable="true">Payment methods</div>
+      <div class="card" draggable="true">Wishlist</div>
+      <div class="card" draggable="true">Two-factor auth</div>
+      <div class="card" draggable="true">Privacy settings</div>
+      <div class="card" draggable="true">Gift cards</div>
+      <div class="card" draggable="true">Newsletter</div>
+      <div class="card" draggable="true">Contact support</div>
+    </div>
+    <div class="cs-cats" id="csCats">
+      <div class="cs-cat" data-bucket="orders"><h4 contenteditable>Orders</h4></div>
+      <div class="cs-cat" data-bucket="account"><h4 contenteditable>My Account</h4></div>
+      <div class="cs-cat" data-bucket="help"><h4 contenteditable>Help</h4></div>
+      <div class="cs-cat" data-bucket="custom"><h4 contenteditable>+ new group</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SKELETON / WIREFRAME ============================== -->
+<section id="skeleton" class="section">
+  <h2><span class="num">06</span> Skeleton Plane — Wireframe Sandbox</h2>
+  <p class="subtitle">Add boxes for header, nav, content, sidebar, footer. Drag and resize. Low-fidelity, on purpose — wireframes are about <em>arrangement</em>, not aesthetics.</p>
+
+  <div class="wf-toolbar">
+    <button class="btn btn-ghost" data-add="header">+ Header</button>
+    <button class="btn btn-ghost" data-add="nav">+ Nav</button>
+    <button class="btn btn-ghost" data-add="hero">+ Hero</button>
+    <button class="btn btn-ghost" data-add="content">+ Content</button>
+    <button class="btn btn-ghost" data-add="card">+ Card</button>
+    <button class="btn btn-ghost" data-add="sidebar">+ Sidebar</button>
+    <button class="btn btn-ghost" data-add="footer">+ Footer</button>
+    <button class="btn btn-ghost" data-add="cta">+ CTA</button>
+    <button class="btn btn-ghost" id="wfClear">Clear</button>
+    <label class="wf-grid-toggle"><input type="checkbox" id="wfGrid" checked /> Grid</label>
+  </div>
+  <div class="wf-canvas" id="wfCanvas"></div>
+</section>
+
+<!-- ============================== SURFACE / DESIGN TOKENS ============================== -->
+<section id="surface" class="section">
+  <h2><span class="num">07</span> Surface Plane — Design Tokens Playground</h2>
+  <p class="subtitle">Visual design is a system, not a vibe. Move the sliders → watch the preview update.</p>
+
+  <div class="surface-wrap">
+    <div class="surface-controls">
+      <label>Hue <input type="range" id="tHue" min="0" max="360" value="260" /></label>
+      <label>Saturation <input type="range" id="tSat" min="0" max="100" value="70" /></label>
+      <label>Roundness (px) <input type="range" id="tRad" min="0" max="32" value="12" /></label>
+      <label>Spacing scale <input type="range" id="tSpace" min="8" max="32" value="16" /></label>
+      <label>Font size (px) <input type="range" id="tFont" min="12" max="22" value="15" /></label>
+      <label>Font family
+        <select id="tFamily">
+          <option value="system-ui, sans-serif">System sans</option>
+          <option value="'Georgia', serif">Serif</option>
+          <option value="'JetBrains Mono', ui-monospace, monospace">Mono</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="surface-preview" id="surfacePreview">
+      <header><strong>Acme</strong><nav><span>Product</span><span>Pricing</span><span>About</span></nav><button>Sign in</button></header>
+      <main>
+        <h3>Design tokens make systems coherent.</h3>
+        <p>Change one variable, every component updates. This is what "Surface plane" looks like in modern frontend.</p>
+        <div class="prev-row">
+          <button class="prev-primary">Primary action</button>
+          <button class="prev-ghost">Secondary</button>
+        </div>
+        <div class="prev-card">
+          <p class="prev-tag">Card</p>
+          <p>Reusable surface. Inherits radius, color, spacing.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== NIELSEN HEURISTICS ============================== -->
+<section id="heuristics" class="section">
+  <h2><span class="num">08</span> Nielsen's 10 Usability Heuristics</h2>
+  <p class="subtitle">Pick an app you use daily. Score each heuristic 1–5. Get an instant audit.</p>
+
+  <input id="heurApp" placeholder="App being evaluated (e.g. Spotify, your university portal)" class="heur-app" />
+
+  <div class="heuristics" id="heuristics"></div>
+
+  <div class="heur-result">
+    <p>Score: <strong id="heurScore">—</strong> / 50</p>
+    <div class="heur-bar"><span id="heurBarFill"></span></div>
+    <p class="heur-verdict" id="heurVerdict"></p>
+  </div>
+</section>
+
+<!-- ============================== FITTS'S LAW ============================== -->
+<section id="fitts" class="section">
+  <h2><span class="num">09</span> Fitts's Law — Try It</h2>
+  <p class="subtitle"><code>MT = a + b · log₂(D/W + 1)</code> — the time to hit a target grows with distance and shrinks with target size. Click each blue dot as fast as you can.</p>
+
+  <div class="fitts">
+    <div class="fitts-controls">
+      <label>Target size <input id="fittsW" type="range" min="12" max="120" value="50" /></label>
+      <label>Distance <input id="fittsD" type="range" min="60" max="500" value="280" /></label>
+      <button class="btn btn-primary" id="fittsStart">Start round</button>
+    </div>
+    <div class="fitts-canvas" id="fittsCanvas"></div>
+    <div class="fitts-stats">
+      <p>Hits: <strong id="fittsHits">0</strong> / 10</p>
+      <p>Avg time: <strong id="fittsAvg">—</strong> ms</p>
+      <p>Predicted (Fitts): <strong id="fittsPred">—</strong> ms</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== GESTALT ============================== -->
+<section id="gestalt" class="section">
+  <h2><span class="num">10</span> Gestalt Principles — See It</h2>
+  <p class="subtitle">The brain groups visual elements before you consciously notice. Designers exploit this constantly.</p>
+  <div class="gestalt-grid" id="gestaltGrid"></div>
+</section>
+
+<!-- ============================== RESEARCH METHODS QUADRANT ============================== -->
+<section id="research" class="section">
+  <h2><span class="num">11</span> Pick the Right Research Method</h2>
+  <p class="subtitle">Based on the Nielsen Norman Group framework. Hover the quadrant to read more.</p>
+
+  <div class="research">
+    <div class="r-axis r-y">Attitudinal ↕ Behavioral</div>
+    <div class="r-axis r-x">Qualitative ↔ Quantitative</div>
+    <div class="r-grid" id="researchGrid"></div>
+  </div>
+  <div class="r-detail" id="rDetail">
+    <p><strong>Click a method</strong> to see when to use it, what it gives you, and what it costs.</p>
+  </div>
+</section>
+
+<!-- ============================== ACCESSIBILITY ============================== -->
+<section id="a11y" class="section">
+  <h2><span class="num">12</span> Accessibility Simulator</h2>
+  <p class="subtitle">Toggle the filters. Your design must work for all of these users — that's not extra, that's the baseline.</p>
+
+  <div class="a11y-controls">
+    <label><input type="checkbox" data-filter="protanopia" /> Protanopia (red-blind)</label>
+    <label><input type="checkbox" data-filter="deuteranopia" /> Deuteranopia (green-blind)</label>
+    <label><input type="checkbox" data-filter="tritanopia" /> Tritanopia (blue-blind)</label>
+    <label><input type="checkbox" data-filter="achromatopsia" /> Total color blindness</label>
+    <label><input type="checkbox" data-filter="blur" /> Low vision (blur)</label>
+    <label><input type="checkbox" data-filter="contrast" /> Low contrast</label>
+    <label>Font scale <input type="range" id="a11yFont" min="100" max="200" value="100" /> <span id="a11yFontVal">100%</span></label>
+  </div>
+
+  <div class="a11y-demo" id="a11yDemo">
+    <h3>Reset your password</h3>
+    <p>Enter your email and we'll send you a link. <a href="#a11y">Need help?</a></p>
+    <form onsubmit="return false">
+      <input type="email" placeholder="you@example.com" />
+      <button class="btn btn-primary">Send link</button>
+    </form>
+    <div class="a11y-traffic">
+      <span class="dot red"></span> Error
+      <span class="dot amber"></span> Warning
+      <span class="dot green"></span> Success
+    </div>
+    <p class="a11y-tip">💡 If you rely on color alone (the dots), users with color blindness lose information. Add labels, icons, or shapes.</p>
+  </div>
+
+  <div class="contrast-checker">
+    <h4>WCAG Contrast Checker</h4>
+    <div class="cc-row">
+      <label>Foreground <input type="color" id="ccFg" value="#777777" /></label>
+      <label>Background <input type="color" id="ccBg" value="#ffffff" /></label>
+      <p class="cc-sample" id="ccSample">Sample text — can you read this?</p>
+    </div>
+    <p>Contrast ratio: <strong id="ccRatio">—</strong></p>
+    <p>WCAG: <span id="ccAA">—</span> AA · <span id="ccAAA">—</span> AAA</p>
+  </div>
+</section>
+
+<!-- ============================== MOBILE / RESPONSIVE ============================== -->
+<section id="mobile" class="section">
+  <h2><span class="num">13</span> Mobile & Multi-Platform</h2>
+  <p class="subtitle">The same content rendered at three breakpoints. Watch how layout (not content) adapts.</p>
+
+  <div class="bp-row">
+    <div class="bp" data-w="375"><span class="bp-label">Mobile · 375px</span><iframe srcdoc='<style>body{font-family:system-ui;background:%23fff;color:%23111;margin:0;padding:14px}h3{margin:0 0 6px}nav{display:flex;flex-direction:column;gap:6px;margin-top:10px}nav a{padding:8px 10px;background:%23f1f1f3;border-radius:8px;color:%23111;text-decoration:none}.cta{margin-top:12px;display:block;text-align:center;padding:12px;background:%237c5cff;color:%23fff;border-radius:10px;text-decoration:none}img{width:100%25;border-radius:10px;margin-top:10px;background:linear-gradient(120deg,%23dad8ff,%23ffd9e7);height:120px;display:block}</style><h3>Acme Pro</h3><p>One product, one job.</p><img alt=""/><a class="cta" href="#">Get started</a><nav><a href="#">Features</a><a href="#">Pricing</a><a href="#">Docs</a></nav>'></iframe></div>
+    <div class="bp" data-w="768"><span class="bp-label">Tablet · 768px</span><iframe srcdoc='<style>body{font-family:system-ui;background:%23fff;color:%23111;margin:0;padding:18px}.row{display:flex;gap:18px;align-items:center}h3{margin:0}nav{display:flex;gap:10px;margin-top:14px}nav a{padding:8px 12px;background:%23f1f1f3;border-radius:8px;color:%23111;text-decoration:none}.cta{padding:10px 16px;background:%237c5cff;color:%23fff;border-radius:10px;text-decoration:none}img{flex:1;border-radius:12px;background:linear-gradient(120deg,%23dad8ff,%23ffd9e7);height:140px}</style><div class="row"><div style="flex:1"><h3>Acme Pro</h3><p>One product, one job.</p><a class="cta" href="#">Get started</a></div><img alt=""/></div><nav><a href="#">Features</a><a href="#">Pricing</a><a href="#">Docs</a><a href="#">Blog</a></nav>'></iframe></div>
+    <div class="bp" data-w="1280"><span class="bp-label">Desktop · 1280px</span><iframe srcdoc='<style>body{font-family:system-ui;background:%23fff;color:%23111;margin:0;padding:24px}header{display:flex;justify-content:space-between;align-items:center}nav{display:flex;gap:14px}nav a{color:%23111;text-decoration:none}.cta{padding:10px 18px;background:%237c5cff;color:%23fff;border-radius:10px;text-decoration:none}.row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px;align-items:center}h1{margin:0 0 6px}img{border-radius:14px;background:linear-gradient(120deg,%23dad8ff,%23ffd9e7);height:220px}</style><header><strong>Acme Pro</strong><nav><a>Features</a><a>Pricing</a><a>Docs</a><a>Blog</a><a class="cta">Get started</a></nav></header><div class="row"><div><h1>One product, one job.</h1><p>Built for teams that ship.</p></div><img alt=""/></div>'></iframe></div>
+  </div>
+  <p class="hint">💡 Mobile-first isn't about phones — it's about forcing yourself to cut to the essential before you have room to bloat.</p>
+</section>
+
+<!-- ============================== FUTURE TRENDS ============================== -->
+<section id="future" class="section">
+  <h2><span class="num">14</span> Future Trends & Ethics</h2>
+  <p class="subtitle">Click each card. What's the upside? What's the dark pattern lurking?</p>
+  <div class="future-grid" id="futureGrid"></div>
+</section>
+
+<!-- ============================== QUIZ ============================== -->
+<section id="quiz" class="section">
+  <h2><span class="num">15</span> Quiz Yourself</h2>
+  <p class="subtitle">Ten questions across the whole syllabus. No login, no tracking, just feedback.</p>
+  <div class="quiz" id="quiz"></div>
+  <div class="quiz-result" id="quizResult"></div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+  <p>Built as a study companion for <strong>UX, UI &amp; Human–Computer Interaction</strong> · BCSAI · IE University.</p>
+  <p>References: Garrett (2011), Nielsen (1994), Fitts (1954), WCAG 2.2, NN/g, Krug (2010), Horton &amp; Quesenbery (2014).</p>
+  <p class="foot-credit">No analytics. No cookies. Open the dev tools — it's all just HTML, CSS, JS.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
