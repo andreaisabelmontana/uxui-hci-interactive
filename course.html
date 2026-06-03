@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Course Structure — UX · UI · Human–Computer Interaction</title>
+<meta name="description" content="Full syllabus-driven course structure for UX/UI & Human–Computer Interaction (BCSAI, IE University): objectives, methodology, assessment, all 30 sessions by module, glossary and annotated bibliography." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c5cff'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='34' font-family='system-ui' fill='white' font-weight='800'%3EUX%3C/text%3E%3C/svg%3E" />
+<style>
+/* ===== Course-structure page specific styles (layered on styles.css) ===== */
+.course-hero { padding: 96px 22px 56px; }
+.course-hero .hero-inner { max-width: 920px; }
+.crumbs { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; font-size:13px; color:var(--muted); margin-bottom:18px; }
+.crumbs a { color:var(--primary-2); text-decoration:none; }
+.crumbs a:hover { text-decoration:underline; }
+
+/* meta grid */
+.meta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-top:8px; }
+.meta-card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; }
+.meta-card .mk { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin:0 0 6px; }
+.meta-card .mv { font-size:16px; font-weight:700; margin:0; }
+
+/* generic content card */
+.cc { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+.cc + .cc { margin-top:18px; }
+.lead { font-size:17px; color:var(--text); }
+
+/* objectives list */
+.obj-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.obj { background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--primary); border-radius:var(--radius); padding:16px 18px; display:flex; gap:12px; }
+.obj .oi { font-family:ui-monospace,monospace; color:var(--primary-2); font-weight:700; font-size:14px; flex:0 0 auto; }
+.obj p { margin:0; font-size:14.5px; }
+
+/* percentage bars (methodology + assessment) */
+.bars { display:grid; gap:14px; }
+.barrow { display:grid; grid-template-columns:200px 1fr 56px; gap:14px; align-items:center; }
+.barrow .bl { font-size:14px; color:var(--text); }
+.barrow .bt { height:14px; background:var(--bg-2); border-radius:99px; overflow:hidden; }
+.barrow .bt span { display:block; height:100%; background:linear-gradient(90deg,var(--primary),var(--accent)); }
+.barrow .bv { font-family:ui-monospace,monospace; font-size:13px; color:var(--primary-2); text-align:right; font-weight:700; }
+
+/* assessment component cards */
+.assess-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:20px; }
+.assess { background:linear-gradient(135deg,var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:var(--radius); padding:18px; }
+.assess .pct { font-size:30px; font-weight:800; background:linear-gradient(120deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.assess h4 { margin:6px 0 6px; font-size:16px; }
+.assess p { margin:0; color:var(--muted); font-size:13px; }
+
+.rules { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:18px; }
+.rule { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; }
+.rule h4 { margin:0 0 8px; font-size:14px; color:var(--accent); }
+.rule p { margin:0; color:var(--muted); font-size:13.5px; }
+
+/* module */
+.module { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px; margin-top:22px; }
+.module-head { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:6px; }
+.module-tag { font-family:ui-monospace,monospace; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--primary-2); font-weight:700; }
+.module-head h3 { margin:0; font-size:22px; flex:1 1 260px; }
+.module-sessions { color:var(--muted); font-size:13px; font-family:ui-monospace,monospace; }
+.module-overview { color:var(--muted); font-size:15px; margin:14px 0 6px; }
+.outcomes { background:var(--bg-2); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0 6px; }
+.outcomes h5 { margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent); }
+.outcomes ul { margin:0; padding-left:18px; }
+.outcomes li { font-size:13.5px; color:var(--text); margin:4px 0; }
+
+/* session timeline */
+.sessions { position:relative; margin-top:18px; padding-left:30px; }
+.sessions::before { content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line); }
+.sess { position:relative; padding:0 0 22px 6px; }
+.sess::before { content:""; position:absolute; left:-26px; top:5px; width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--accent)); border:2px solid var(--bg); }
+.sess-num { font-family:ui-monospace,monospace; font-size:12px; color:var(--primary-2); font-weight:700; letter-spacing:1px; }
+.sess h4 { margin:2px 0 6px; font-size:17px; }
+.sess .obj-line { color:var(--accent); font-style:italic; font-size:14px; margin:0 0 10px; }
+.topic { margin:0 0 8px; font-size:14px; }
+.topic b { color:var(--text); }
+.topic span { color:var(--muted); }
+.keyidea { background:color-mix(in srgb, var(--primary) 12%, var(--panel)); border:1px solid var(--primary); border-radius:10px; padding:10px 14px; margin:10px 0; font-size:13.5px; }
+.keyidea b { color:var(--primary-2); }
+.concept { background:color-mix(in srgb, var(--accent) 10%, var(--panel)); border-left:3px solid var(--accent); border-radius:8px; padding:10px 14px; margin:10px 0; font-size:13.5px; }
+.concept b { color:var(--accent); }
+.readings { margin:10px 0 0; }
+.readings .rh { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin:0 0 6px; }
+.readings ul { margin:0; padding-left:18px; }
+.readings li { font-size:13px; color:var(--muted); margin:4px 0; }
+.readings li b { color:var(--text); font-weight:600; }
+.assign { display:inline-block; margin-top:10px; background:var(--bg-2); border:1px dashed var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:var(--muted); }
+.assign b { color:var(--warn); }
+.xlink { display:inline-block; margin:8px 8px 0 0; font-size:12.5px; background:var(--bg-2); border:1px solid var(--line); border-radius:99px; padding:5px 12px; color:var(--primary-2); text-decoration:none; }
+.xlink:hover { border-color:var(--primary); }
+
+/* glossary */
+.glossary { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.term { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+.term dt { font-weight:700; font-size:15px; margin-bottom:4px; }
+.term dd { margin:0; color:var(--muted); font-size:13.5px; }
+
+/* bibliography */
+.biblio { display:grid; gap:14px; }
+.bib { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+.bib .bt { font-weight:700; font-size:15px; margin:0 0 4px; }
+.bib .ba { color:var(--primary-2); font-size:13px; margin:0 0 8px; }
+.bib .bd { color:var(--muted); font-size:13.5px; margin:0; }
+
+.section-intro { color:var(--muted); max-width:760px; margin:0 0 28px; font-size:16px; }
+@media (max-width:680px){ .barrow{ grid-template-columns:130px 1fr 44px; } }
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- ============================== NAV ============================== -->
+<header class="nav">
+  <a href="index.html#top" class="brand">
+    <span class="brand-dot"></span><span>UX·UI·HCI</span>
+  </a>
+  <nav class="nav-links">
+    <a href="index.html#top">← Concept map</a>
+    <a href="#overview">Overview</a>
+    <a href="#objectives">Objectives</a>
+    <a href="#methodology">Methodology</a>
+    <a href="#assessment">Assessment</a>
+    <a href="#program">Program</a>
+    <a href="#glossary">Key concepts</a>
+    <a href="#biblio">Bibliography</a>
+    <a href="SYLLABUS.pdf">PDF syllabus ↗</a>
+  </nav>
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">◐</button>
+</header>
+
+<!-- ============================== HERO ============================== -->
+<section id="top" class="hero course-hero">
+  <div class="hero-inner">
+    <div class="crumbs">
+      <a href="index.html#top">Interactive concept map</a><span>·</span><span>Course structure</span>
+    </div>
+    <p class="kicker">Syllabus-driven course structure · 25–26 · BCSAI · IE University</p>
+    <h1>The <span class="grad">full course</span>, mapped session by session.</h1>
+    <p class="lede">Everything from the official syllabus — objectives, teaching methodology, assessment, and all 30 sessions organised into modules — turned into a navigable study map. Each session links back to the part of the <a href="index.html#top">interactive concept map</a> where you can actually <em>touch</em> the idea.</p>
+    <div class="hero-cta">
+      <a href="#program" class="btn btn-primary">Jump to the 30-session program →</a>
+      <a href="SYLLABUS.pdf" class="btn btn-ghost">Original PDF syllabus</a>
+    </div>
+    <div class="hero-meta">
+      <span>30 sessions</span><span>·</span><span>9 modules</span><span>·</span><span>6 ECTS credits</span><span>·</span><span>150 study hours</span>
+    </div>
+  </div>
+  <div class="hero-orbs" aria-hidden="true">
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  </div>
+</section>
+
+<!-- ============================== OVERVIEW ============================== -->
+<section id="overview" class="section">
+  <h2><span class="num">01</span> Course Overview</h2>
+  <p class="subtitle">What this course is, who teaches it, and how it fits the BCSAI degree.</p>
+
+  <div class="cc">
+    <p class="lead">This course introduces students to the fundamentals of <strong>Human–Computer Interaction (HCI)</strong>, focusing on understanding user needs, designing user-friendly interfaces, and conducting user research. Students gain practical experience through hands-on assignments, a semester-long group project, and a final exam.</p>
+    <p style="color:var(--muted)">The spine of the course is Jesse James Garrett's <em>The Elements of User Experience</em> — the five-planes model (Strategy → Scope → Structure → Skeleton → Surface) that walks a product from abstract purpose to concrete pixels. Around that spine the course layers user research methods, usability evaluation, accessibility, mobile and multi-platform design, a team project, and emerging-technology ethics.</p>
+  </div>
+
+  <div class="meta-grid" style="margin-top:18px">
+    <div class="meta-card"><p class="mk">Course code</p><p class="mv">UXUI-CSAI.4.M.A</p></div>
+    <div class="meta-card"><p class="mk">Degree</p><p class="mv">BCSAI — Computer Science &amp; AI</p></div>
+    <div class="meta-card"><p class="mk">Year · Semester</p><p class="mv">4th · 2nd</p></div>
+    <div class="meta-card"><p class="mk">Credits</p><p class="mv">6.0 ECTS</p></div>
+    <div class="meta-card"><p class="mk">Sessions</p><p class="mv">30 (live, in-person)</p></div>
+    <div class="meta-card"><p class="mk">Category</p><p class="mv">Compulsory</p></div>
+    <div class="meta-card"><p class="mk">Language</p><p class="mv">English</p></div>
+    <div class="meta-card"><p class="mk">Area</p><p class="mv">Computer Science</p></div>
+    <div class="meta-card"><p class="mk">Academic year</p><p class="mv">2025–26</p></div>
+    <div class="meta-card"><p class="mk">Professor</p><p class="mv">Dr. Robert David Polding</p></div>
+    <div class="meta-card"><p class="mk">Contact</p><p class="mv"><a href="mailto:rpolding@faculty.ie.edu">rpolding@faculty.ie.edu</a></p></div>
+    <div class="meta-card"><p class="mk">Office hours</p><p class="mv">On request · Tower 04.17</p></div>
+  </div>
+
+  <div class="cc" style="margin-top:18px">
+    <h4 style="margin:0 0 8px">About the professor</h4>
+    <p style="color:var(--muted);margin:0">Dr. Polding holds a Ph.D. and MSc in Information Systems from the University of Sheffield, with a focus on user-experience design, development methodologies and online-marketing strategy. His research centres on customer centricity and user-centered software design. He is founder/CTO of Linotek (digital museum tour guides) and has worked with British Telecom, Indra, Greenpeace and others. He currently serves as an assistant vice dean and lecturer.</p>
+    <p style="color:var(--muted);margin:10px 0 0;font-size:13px"><b style="color:var(--accent)">AI policy:</b> AI is permitted but must be acknowledged when used (with quotation and citation) as with any other source. Submitted reports should be your own work and should not be AI-generated.</p>
+  </div>
+</section>
+
+<!-- ============================== OBJECTIVES ============================== -->
+<section id="objectives" class="section">
+  <h2><span class="num">02</span> Learning Objectives</h2>
+  <p class="subtitle">By the end of the course you should be able to do each of the following.</p>
+
+  <div class="obj-grid">
+    <div class="obj"><span class="oi">01</span><p>Understand the foundations of HCI, including its history and interdisciplinary nature.</p></div>
+    <div class="obj"><span class="oi">02</span><p>Identify and explain user-centered design principles and how to implement them.</p></div>
+    <div class="obj"><span class="oi">03</span><p>Create user personas and scenarios to inform interface design.</p></div>
+    <div class="obj"><span class="oi">04</span><p>Design and run usability evaluations using various methods.</p></div>
+    <div class="obj"><span class="oi">05</span><p>Design and prototype user-friendly interfaces.</p></div>
+    <div class="obj"><span class="oi">06</span><p>Understand the importance of accessibility and inclusive design in HCI.</p></div>
+    <div class="obj"><span class="oi">07</span><p>Explore emerging trends in HCI and understand ethical considerations.</p></div>
+    <div class="obj"><span class="oi">08</span><p>Analyze real-world HCI case studies, and how to work in cross-functional teams.</p></div>
+    <div class="obj"><span class="oi">09</span><p>Collaborate in user-centered design projects and effectively communicate results.</p></div>
+    <div class="obj"><span class="oi">10</span><p>Reflect on personal and professional growth as an HCI practitioner and explore career paths in HCI-related fields.</p></div>
+  </div>
+</section>
+
+<!-- ============================== METHODOLOGY ============================== -->
+<section id="methodology" class="section">
+  <h2><span class="num">03</span> Teaching Methodology</h2>
+  <p class="subtitle">IE University's method is collaborative, active and applied — you build knowledge by participating, not by watching. The 6 ECTS map to roughly <strong>150 hours</strong> of total student work, distributed as below.</p>
+
+  <div class="cc">
+    <div class="bars">
+      <div class="barrow"><span class="bl">Lectures</span><div class="bt"><span style="width:13.3%"></span></div><span class="bv">13.3%</span></div>
+      <div class="barrow"><span class="bl">Discussions</span><div class="bt"><span style="width:6.7%"></span></div><span class="bv">6.7%</span></div>
+      <div class="barrow"><span class="bl">Exercises / async / field work</span><div class="bt"><span style="width:30%"></span></div><span class="bv">30%</span></div>
+      <div class="barrow"><span class="bl">Group work</span><div class="bt"><span style="width:30%"></span></div><span class="bv">30%</span></div>
+      <div class="barrow"><span class="bl">Individual studying</span><div class="bt"><span style="width:20%"></span></div><span class="bv">20%</span></div>
+    </div>
+    <p class="hint" style="margin-top:16px">Estimated effort: Lectures ≈ 20h · Discussions ≈ 10h · Exercises/async/field ≈ 45h · Group work ≈ 45h · Individual study ≈ 30h · <b>Total = 150h</b>. Note that 60% of your time is hands-on (exercises + group work) — this is a making course, not a reading course.</p>
+  </div>
+</section>
+
+<!-- ============================== ASSESSMENT ============================== -->
+<section id="assessment" class="section">
+  <h2><span class="num">04</span> Assessment</h2>
+  <p class="subtitle">Your grade is continuous: five weighted components across the semester. The bars show each component's weight.</p>
+
+  <div class="cc">
+    <div class="bars">
+      <div class="barrow"><span class="bl">Final Exam</span><div class="bt"><span style="width:30%"></span></div><span class="bv">30%</span></div>
+      <div class="barrow"><span class="bl">Individual work</span><div class="bt"><span style="width:30%"></span></div><span class="bv">30%</span></div>
+      <div class="barrow"><span class="bl">Group presentation</span><div class="bt"><span style="width:15%"></span></div><span class="bv">15%</span></div>
+      <div class="barrow"><span class="bl">Group work</span><div class="bt"><span style="width:15%"></span></div><span class="bv">15%</span></div>
+      <div class="barrow"><span class="bl">Class participation</span><div class="bt"><span style="width:10%"></span></div><span class="bv">10%</span></div>
+    </div>
+  </div>
+
+  <div class="assess-grid">
+    <div class="assess"><div class="pct">30%</div><h4>Final Exam</h4><p>Comprehensive exam covering all course material. Week 30.</p></div>
+    <div class="assess"><div class="pct">30%</div><h4>Individual work</h4><p>Weekly assignments delivered throughout the semester.</p></div>
+    <div class="assess"><div class="pct">15%</div><h4>Group presentation</h4><p>Presentation of the user-centered design project. Week 24.</p></div>
+    <div class="assess"><div class="pct">15%</div><h4>Group work</h4><p>Delivery of the group project artefacts. Week 24.</p></div>
+    <div class="assess"><div class="pct">10%</div><h4>Class participation</h4><p>Active participation in sessions and submission of in-class exercises.</p></div>
+  </div>
+
+  <div class="rules">
+    <div class="rule"><h4>Passing grade</h4><p>The minimum passing grade is <b style="color:var(--text)">5.0 / 10</b>. Four chances total are allowed to pass a course, spread over two consecutive academic years (ordinary + extraordinary calls).</p></div>
+    <div class="rule"><h4>Attendance (80% rule)</h4><p>Students who do not meet the <b style="color:var(--text)">80% attendance</b> requirement fail both calls for the year (ordinary and extraordinary) and must re-enroll the following academic year.</p></div>
+    <div class="rule"><h4>Re-sit (June / July)</h4><p>Failing the ordinary call (and meeting attendance) earns a re-sit: one comprehensive exam, in person, on the enrolled campus. The continuous-evaluation grade is ignored; max attainable grade is <b style="color:var(--text)">8.0</b> ("notable").</p></div>
+    <div class="rule"><h4>Re-takers</h4><p>Students re-enrolled after failing in a prior year must check the assigned professor's syllabus and contact them about specific criteria. Max grade in the retake (3rd call) is <b style="color:var(--text)">10.0</b>.</p></div>
+    <div class="rule"><h4>Grade reviews &amp; appeals</h4><p>A review session follows graded exams; attending it is a prerequisite to any grade appeal.</p></div>
+    <div class="rule"><h4>Conduct &amp; ethics</h4><p>Governed by IE University's Code of Conduct, Attendance Policy and Ethics Code. Failing &gt;18 ECTS in a year after re-sits may lead to leaving the program.</p></div>
+  </div>
+</section>
+
+<!-- ============================== PROGRAM ============================== -->
+<section id="program" class="section">
+  <h2><span class="num">05</span> Program — All 30 Sessions</h2>
+  <p class="section-intro">The 30 live sessions are grouped here into nine teaching modules that follow Garrett's five planes and then expand into research, accessibility, multi-platform design, a team project, and the future of the field. Each session lists its objective, topics with short explanations, the core HCI concept it teaches, a "key idea" to remember, and its readings and assignment. Where a session maps onto an interactive demo on the concept map, follow the linked chip to try it.</p>
+
+  <!-- MODULE 1 — Foundations -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 1 · Foundations</span>
+        <h3>Introduction to HCI &amp; the Five Planes</h3>
+      </div>
+      <span class="module-sessions">Sessions 1–2</span>
+    </div>
+    <p class="module-overview">Sets the stage: what HCI is, where it came from, why it matters, and the mental model that organises the whole course — Garrett's five planes of user experience, starting from Strategy.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Explain HCI as an interdisciplinary field and trace its key historical milestones.</li>
+      <li>Articulate why usability and experience matter for modern technology.</li>
+      <li>Distinguish the Strategy plane — user needs vs. product objectives — and define success metrics.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 1 · LIVE IN-PERSON</p>
+        <h4>Introduction to HCI</h4>
+        <p class="obj-line">Objective: understand what HCI is, where it came from, and why it matters.</p>
+        <p class="topic"><b>Overview of the course</b> — <span>logistics, deliverables, the five-planes throughline.</span></p>
+        <p class="topic"><b>Overview of HCI</b> — <span>HCI sits at the intersection of computer science, cognitive psychology and design; it studies how people interact with systems and how to make that interaction effective, efficient and satisfying.</span></p>
+        <p class="topic"><b>Historical perspectives</b> — <span>from Vannevar Bush's "Memex" (1945) and Engelbart's mouse/NLS (1968) to the GUI (Xerox PARC, Macintosh), the web, mobile, and today's AI-driven interfaces.</span></p>
+        <p class="topic"><b>Importance of HCI in modern technology</b> — <span>good interaction design is now a competitive differentiator and an accessibility/ethics obligation, not a finishing coat of paint.</span></p>
+        <div class="concept"><b>Core concept — Human–Computer Interaction:</b> the design, evaluation and implementation of interactive computing systems for human use, and the study of the phenomena surrounding them (ACM SIGCHI). Its three pillars: the human, the computer, and the interaction between them.</div>
+        <div class="keyidea"><b>Key idea:</b> HCI reframes "the system works" into "the system works <em>for this person, in this context</em>." Technical correctness is necessary but never sufficient.</div>
+        <a class="xlink" href="index.html#timeline">↗ Explore: HCI history timeline</a>
+        <a class="xlink" href="index.html#planes">↗ Explore: the 5 planes</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett, J. J. — <i>The Elements of User Experience</i></b>, Chapters 1–2 (what UX is; the five-planes model).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Personal reflection on a frustrating user experience.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 2 · LIVE IN-PERSON</p>
+        <h4>Developing a Strategy</h4>
+        <p class="obj-line">Objective: define why a product exists before deciding what it does.</p>
+        <p class="topic"><b>User experience and the web</b> — <span>the web made UX mainstream: software became a service people choose, so experience drives adoption.</span></p>
+        <p class="topic"><b>Introduction to Strategy</b> — <span>the bottom plane. Everything above it (scope, structure, skeleton, surface) is constrained by the strategy.</span></p>
+        <p class="topic"><b>Objectives</b> — <span>the product/business goals: what the organisation wants to achieve.</span></p>
+        <p class="topic"><b>Target audience</b> — <span>who the users are, segmented by needs and context.</span></p>
+        <p class="topic"><b>Success metrics</b> — <span>measurable indicators (task success, retention, conversion, SUS scores) that tell you whether the strategy is working.</span></p>
+        <div class="concept"><b>Core concept — Strategy plane:</b> the intersection of <em>user needs</em> and <em>product objectives</em>. Get it wrong and every decision above it inherits the mistake.</div>
+        <div class="keyidea"><b>Key idea:</b> "Why are we building this?" is answered here. Define success metrics early — you cannot improve what you never agreed to measure.</div>
+        <a class="xlink" href="index.html#planes">↗ Explore: Strategy plane (peel the stack)</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 3 (the Strategy plane).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Personal reflection on a frustrating user experience.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 2 — Strategy & Users -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 2 · Strategy &amp; Users</span>
+        <h3>Personas, Research &amp; Scope</h3>
+      </div>
+      <span class="module-sessions">Sessions 3–6</span>
+    </div>
+    <p class="module-overview">Turns "users" into concrete people, then converts what those people need into a defined, prioritised scope of features and content. This is the move from Strategy into Scope.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Build evidence-based personas and scenarios from interviews and surveys.</li>
+      <li>Translate user needs into functional and content requirements (the Scope plane).</li>
+      <li>Prioritise requirements and resist scope creep.</li>
+      <li>Apply familiarity and convention so interfaces feel learnable.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 3 · LIVE IN-PERSON</p>
+        <h4>Strategy Part 2 — Personas &amp; Scenarios</h4>
+        <p class="obj-line">Objective: represent target users as concrete personas grounded in research.</p>
+        <p class="topic"><b>User personas and scenarios</b> — <span>a persona is a fictional-but-evidence-based archetype (goals, frustrations, context); a scenario narrates that persona accomplishing a task.</span></p>
+        <p class="topic"><b>Conducting user interviews and surveys</b> — <span>qualitative interviews surface the "why"; surveys scale the "how many." Together they ground personas in reality rather than assumption.</span></p>
+        <div class="concept"><b>Core concept — User-Centered Design (UCD):</b> an iterative process that keeps real users and their needs at the centre of every decision, validating with them at each stage rather than designing for an imagined "average user."</div>
+        <div class="keyidea"><b>Key idea:</b> A persona without research is just a stereotype. Personas exist to create empathy <em>and</em> to settle arguments with evidence, not opinion.</div>
+        <a class="xlink" href="index.html#persona">↗ Explore: Persona Builder</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 3 (strategy &amp; users).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Create a user persona based on a real or fictional user.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 4 · LIVE IN-PERSON</p>
+        <h4>Scope — Requirement Analysis</h4>
+        <p class="obj-line">Objective: decide what the product will and won't do.</p>
+        <p class="topic"><b>Requirement analysis</b> — <span>elicit, document and validate functional requirements (what the system does) and content requirements (what it must contain).</span></p>
+        <p class="topic"><b>Working out what you want to build</b> — <span>scope is the bridge from abstract strategy to concrete specification; ambiguity here becomes rework later.</span></p>
+        <div class="concept"><b>Core concept — Scope plane:</b> functional requirements + content requirements. It is the negotiated "spec" — the contract between strategy and execution.</div>
+        <div class="keyidea"><b>Key idea:</b> Writing scope down is itself a design act: the act of specifying forces the hard questions that vague vision statements let you dodge.</div>
+        <a class="xlink" href="index.html#scope">↗ Explore: Scope plane (MoSCoW)</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 4 (the Scope plane).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Research possible CMSs for your project.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 5 · LIVE IN-PERSON</p>
+        <h4>Scope Part 2 — Prioritising Requirements</h4>
+        <p class="obj-line">Objective: separate the essential from the nice-to-have.</p>
+        <p class="topic"><b>Requirements analysis (cont.)</b> — <span>refine and disambiguate requirements into testable statements.</span></p>
+        <p class="topic"><b>Prioritising requirements</b> — <span>techniques such as MoSCoW (Must / Should / Could / Won't) make trade-offs explicit and defensible.</span></p>
+        <div class="concept"><b>Core concept — MoSCoW prioritisation:</b> sort requirements into Must, Should, Could and Won't-have-this-time. If everything is a "Must," nothing is — prioritisation is the antidote to scope creep.</div>
+        <div class="keyidea"><b>Key idea:</b> Scope creep is the silent killer of UX. A small, finished, coherent product beats a large, half-built, incoherent one.</div>
+        <a class="xlink" href="index.html#scope">↗ Explore: prioritise with MoSCoW</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 4.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Complete the requirements analysis.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 6 · LIVE IN-PERSON</p>
+        <h4>Skeleton — Metaphor &amp; Familiarity</h4>
+        <p class="obj-line">Objective: use existing mental models so interfaces feel instantly learnable.</p>
+        <p class="topic"><b>How to build apps that don't frustrate users</b> — <span>frustration usually comes from violated expectations; matching conventions removes friction.</span></p>
+        <p class="topic"><b>Using familiarity to our advantage</b> — <span>metaphors (desktop, trash can, cart) and platform conventions let users transfer knowledge instead of re-learning.</span></p>
+        <div class="concept"><b>Core concept — Jakob's Law:</b> users spend most of their time on <em>other</em> sites/apps, so they expect yours to work the same way. Familiar patterns lower cognitive load.</div>
+        <div class="keyidea"><b>Key idea:</b> Innovate on value, conform on convention. Be surprising in what you offer, predictable in how it's operated.</div>
+        <a class="xlink" href="index.html#heuristics">↗ Explore: heuristics (consistency &amp; standards)</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 4.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Brainstorm ways to use metaphor and make the experience easier for the user.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3 — Structure -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 3 · Structure</span>
+        <h3>Interaction Design &amp; Information Architecture</h3>
+      </div>
+      <span class="module-sessions">Sessions 7–8</span>
+    </div>
+    <p class="module-overview">The Structure plane: how the pieces fit together. Interaction design governs behaviour over time and error handling; information architecture organises content so people can find it.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Design interaction flows and graceful error handling.</li>
+      <li>Build information architecture: sitemaps, taxonomies and metadata.</li>
+      <li>Read and produce architecture diagrams that communicate structure.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 7 · LIVE IN-PERSON</p>
+        <h4>The Structure — Interaction Design</h4>
+        <p class="obj-line">Objective: design how the system behaves and how it recovers from mistakes.</p>
+        <p class="topic"><b>Interaction design</b> — <span>defining states, flows and system responses so behaviour is predictable and forgiving.</span></p>
+        <p class="topic"><b>Error handling</b> — <span>prevent errors where possible; when they happen, explain them in plain language and offer a way out.</span></p>
+        <div class="concept"><b>Core concept — Error prevention &amp; recovery (Nielsen #5 &amp; #9):</b> the best error message is the one never shown; the second-best clearly states the problem and a constructive fix. Always provide an "emergency exit" (undo).</div>
+        <div class="keyidea"><b>Key idea:</b> Design for the unhappy path. Users will make mistakes — the question is whether your interface treats them as failures or as ordinary, recoverable events.</div>
+        <a class="xlink" href="index.html#heuristics">↗ Explore: error-related heuristics</a>
+        <a class="xlink" href="index.html#structure">↗ Explore: Structure plane</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 5 (the Structure plane).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Document how you can help the user, and the possible ways they can make mistakes.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 8 · LIVE IN-PERSON</p>
+        <h4>Structure Part 2 — Information Design</h4>
+        <p class="obj-line">Objective: organise content so users can find and understand it.</p>
+        <p class="topic"><b>Information design</b> — <span>presenting information so it communicates effectively and supports decisions.</span></p>
+        <p class="topic"><b>Architecture diagrams</b> — <span>sitemaps and flow diagrams that map the organisational structure and navigation paths.</span></p>
+        <p class="topic"><b>Metadata descriptions</b> — <span>the labels, tags and attributes that make content findable and machine-organisable.</span></p>
+        <div class="concept"><b>Core concept — Information Architecture (IA):</b> the structural design of shared information environments — organisation, labelling, navigation and search systems. Card sorting reveals users' own mental categories.</div>
+        <div class="keyidea"><b>Key idea:</b> The best IA is invisible — users find things without thinking about the structure. Test it with card sorting before you commit to a navigation.</div>
+        <a class="xlink" href="index.html#structure">↗ Explore: Card Sorting (IA)</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 5.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Create the architecture designs and metadata descriptions.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4 — Skeleton & Surface -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 4 · Skeleton &amp; Surface</span>
+        <h3>Wireframing, Prototyping &amp; Visual Design</h3>
+      </div>
+      <span class="module-sessions">Sessions 9–10</span>
+    </div>
+    <p class="module-overview">The top two planes. Skeleton fixes where things go (interface, navigation, information design, wireframes); Surface is the sensory layer (colour, type, motion). Both are explored through prototyping at increasing fidelity.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Use metaphor and familiarity to improve learnability on the Skeleton plane.</li>
+      <li>Explain why prototyping fits into the product design lifecycle.</li>
+      <li>Choose between low- and high-fidelity prototypes and the right tools for each.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 9 · LIVE IN-PERSON</p>
+        <h4>The Skeleton — Metaphor</h4>
+        <p class="obj-line">Objective: shape layout and navigation so the experience feels enjoyable and intuitive.</p>
+        <p class="topic"><b>Making apps that people enjoy</b> — <span>delight comes from effortlessness plus small, well-placed moments of personality.</span></p>
+        <p class="topic"><b>Familiarity</b> — <span>reuse interface patterns users already know to minimise the learning curve.</span></p>
+        <p class="topic"><b>Using metaphor to aid the CX</b> — <span>metaphors carry meaning from the physical world into the interface (folders, swipe-to-refresh).</span></p>
+        <div class="concept"><b>Core concept — Skeleton plane:</b> interface design, navigation design and information design — the concrete arrangement of elements that makes content reachable. Wireframes live here.</div>
+        <div class="keyidea"><b>Key idea:</b> Wireframes are about <em>arrangement</em>, not aesthetics. Solve "where does everything go?" in greyscale before you ever pick a colour.</div>
+        <a class="xlink" href="index.html#skeleton">↗ Explore: Wireframe Sandbox</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 6 (the Skeleton plane).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Brainstorm and document ways the experience will improve through familiarity and metaphor.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 10 · LIVE IN-PERSON</p>
+        <h4>Prototyping &amp; Wireframing</h4>
+        <p class="obj-line">Objective: externalise ideas as testable artefacts at the right fidelity.</p>
+        <p class="topic"><b>Importance of prototyping &amp; the product design lifecycle</b> — <span>prototypes turn debates into experiments; they fail cheaply and early.</span></p>
+        <p class="topic"><b>Prototyping tools and techniques</b> — <span>paper, Figma, code — chosen by the question being asked.</span></p>
+        <p class="topic"><b>Low- vs. high-fidelity prototypes</b> — <span>low-fi tests structure and flow; high-fi tests look, feel and micro-interactions.</span></p>
+        <div class="concept"><b>Core concept — Surface plane &amp; fidelity:</b> Surface is the sensory experience (visual design as a coherent system of tokens, not a vibe). Match prototype fidelity to the decision you're trying to make.</div>
+        <div class="keyidea"><b>Key idea:</b> Fidelity is a tool, not a goal. High fidelity too early invites bikeshedding about colour while the flow is still broken.</div>
+        <a class="xlink" href="index.html#surface">↗ Explore: Surface — Design Tokens</a>
+        <a class="xlink" href="index.html#skeleton">↗ Explore: Wireframe Sandbox</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Garrett — <i>The Elements of User Experience</i></b>, Chapter 6.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Create a paper wireframe prototype of a mobile app.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 5 — User Research -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 5 · User Research</span>
+        <h3>Research Methods &amp; Usability Evaluation</h3>
+      </div>
+      <span class="module-sessions">Sessions 11–14</span>
+    </div>
+    <p class="module-overview">How we know what we know about users. Distinguishes UX research from opinion, separates qualitative from quantitative and attitudinal from behavioral, then drills into concrete evaluation methods: heuristics, usability tests, cognitive walkthroughs and surveys.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Define what is and isn't UX research, and where it fits the lifecycle.</li>
+      <li>Choose between qualitative/quantitative and attitudinal/behavioral methods.</li>
+      <li>Run heuristic evaluations, usability tests, cognitive walkthroughs and surveys.</li>
+      <li>Design a research instrument and pilot it.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 11 · LIVE IN-PERSON</p>
+        <h4>User Research: Overview (1 of 2)</h4>
+        <p class="obj-line">Objective: understand what UX research is and why it de-risks design.</p>
+        <p class="topic"><b>What is and isn't UX research?</b> — <span>structured inquiry into user behaviour and needs — not asking friends, not guessing from analytics alone.</span></p>
+        <p class="topic"><b>Importance in the product design lifecycle</b> — <span>research informs strategy, validates scope, and checks the design before and after launch.</span></p>
+        <p class="topic"><b>Quantitative vs. qualitative methods</b> — <span>qual explains <em>why</em> (small N, rich); quant measures <em>how much / how many</em> (large N, generalisable).</span></p>
+        <div class="concept"><b>Core concept — the research-methods landscape (NN/g):</b> methods map on two axes — attitudinal↔behavioral (what people say vs. do) and qualitative↔quantitative — plus the context of use. Pick the method that answers your actual question.</div>
+        <div class="keyidea"><b>Key idea:</b> What users <em>say</em> and what users <em>do</em> often differ. Behavioral methods catch the gap that self-report misses.</div>
+        <a class="xlink" href="index.html#research">↗ Explore: Research Methods Quadrant</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Krug, S. — <i>Rocket Surgery Made Easy</i></b> (DIY usability testing).</li>
+          <li><b>NN/g — <i>When to Use Which User-Experience Research Methods</i></b>.</li>
+          <li><b>NN/g — <i>Quantitative User-Research Methodologies: An Overview</i></b>.</li>
+          <li><b>Goodman, Kuniavsky &amp; Moed — <i>Observing the User Experience</i></b>.</li>
+          <li><b>Chapman &amp; Rodden — <i>Quantitative User Experience Research</i></b>.</li>
+          <li><b>Albert &amp; Tullis — <i>Measuring the User Experience</i></b>.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Design a research project and corresponding methodology based on a user problem.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 12 · LIVE IN-PERSON</p>
+        <h4>User Research: Overview (2 of 2)</h4>
+        <p class="obj-line">Objective: turn the research-methods landscape into a concrete plan.</p>
+        <p class="topic"><b>What is and isn't UX research? (cont.)</b> — <span>deepening the distinction between insight and anecdote.</span></p>
+        <p class="topic"><b>Importance in the lifecycle (cont.)</b> — <span>matching method to project phase, budget and risk.</span></p>
+        <p class="topic"><b>Quantitative vs. qualitative (cont.)</b> — <span>combining methods (triangulation) for stronger conclusions.</span></p>
+        <div class="concept"><b>Core concept — triangulation:</b> converging evidence from multiple methods (e.g., interviews + analytics + a survey) produces conclusions more robust than any single source.</div>
+        <div class="keyidea"><b>Key idea:</b> Choose the method to fit the question and the constraints — there is no single "best" research method, only the right one for this decision.</div>
+        <a class="xlink" href="index.html#research">↗ Explore: pick the right method</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li>Krug · NN/g (both articles) · Goodman/Kuniavsky/Moed · Chapman/Rodden · Albert/Tullis (as Session 11).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Design a research project and corresponding methodology based on a user problem.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 13 · LIVE IN-PERSON</p>
+        <h4>Usability Testing, UI Evaluation &amp; Surveys (1 of 2)</h4>
+        <p class="obj-line">Objective: evaluate an interface with expert and user-based methods.</p>
+        <p class="topic"><b>Heuristic evaluation &amp; expert reviews</b> — <span>experts inspect an interface against recognised principles (Nielsen's 10 heuristics) to find problems fast and cheaply.</span></p>
+        <p class="topic"><b>Usability tests &amp; cognitive walkthroughs</b> — <span>real users attempt real tasks (think-aloud); walkthroughs simulate a first-time user step by step.</span></p>
+        <p class="topic"><b>User surveys</b> — <span>scale attitudes and satisfaction across many users (e.g., SUS).</span></p>
+        <div class="concept"><b>Core concept — Nielsen's 10 usability heuristics:</b> visibility of system status; match between system and the real world; user control &amp; freedom; consistency &amp; standards; error prevention; recognition rather than recall; flexibility &amp; efficiency; aesthetic &amp; minimalist design; help users recognise/recover from errors; help &amp; documentation.</div>
+        <div class="keyidea"><b>Key idea:</b> Nielsen showed ~5 users uncover ~85% of usability problems — you don't need a huge sample to learn an enormous amount.</div>
+        <a class="xlink" href="index.html#heuristics">↗ Explore: score the 10 heuristics</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li>Krug · NN/g (both) · Goodman/Kuniavsky/Moed · Chapman/Rodden · Albert/Tullis.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Design a research instrument (survey, usability-test script, heuristic guide) and collect data in a pilot study.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 14 · LIVE IN-PERSON</p>
+        <h4>Usability Testing, UI Evaluation &amp; Surveys (2 of 2)</h4>
+        <p class="obj-line">Objective: run a pilot evaluation and interpret the findings.</p>
+        <p class="topic"><b>Heuristic evaluation &amp; expert reviews (cont.)</b> — <span>severity-rating findings and prioritising fixes.</span></p>
+        <p class="topic"><b>Usability tests &amp; cognitive walkthroughs (cont.)</b> — <span>moderating, note-taking and avoiding leading the participant.</span></p>
+        <p class="topic"><b>User surveys (cont.)</b> — <span>writing unbiased questions; analysing closed and open responses.</span></p>
+        <div class="concept"><b>Core concept — formative vs. summative evaluation:</b> formative testing happens <em>during</em> design to improve it; summative testing happens <em>after</em> to benchmark it. Most class work is formative.</div>
+        <div class="keyidea"><b>Key idea:</b> The goal of a usability test is to fix the <em>product</em>, not to judge the <em>user</em>. If a user fails a task, the design failed the test.</div>
+        <a class="xlink" href="index.html#heuristics">↗ Explore: heuristics audit</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li>Krug · NN/g (both) · Goodman/Kuniavsky/Moed · Chapman/Rodden · Albert/Tullis.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Design a research instrument and collect data in a pilot study.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 6 — Accessibility -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 6 · Accessibility</span>
+        <h3>Accessibility &amp; Inclusive Design</h3>
+      </div>
+      <span class="module-sessions">Sessions 15–16</span>
+    </div>
+    <p class="module-overview">Designing so that everyone — regardless of ability — can use the product. Covers accessibility principles, assistive technologies, inclusive-design practice, and how to involve participants with disabilities in research.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>State the principles of accessibility and the WCAG POUR model.</li>
+      <li>Identify common assistive technologies and how interfaces must support them.</li>
+      <li>Apply inclusive-design practices and audit a real product.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 15 · LIVE IN-PERSON</p>
+        <h4>Accessibility &amp; Inclusive Design (1 of 2)</h4>
+        <p class="obj-line">Objective: treat accessibility as a baseline requirement, not an extra.</p>
+        <p class="topic"><b>Principles of accessibility</b> — <span>content must be Perceivable, Operable, Understandable and Robust (WCAG's POUR); don't rely on colour alone; ensure sufficient contrast.</span></p>
+        <p class="topic"><b>Assistive technologies</b> — <span>screen readers, magnifiers, switch access, voice control — interfaces must expose semantics (proper labels, ARIA) to work with them.</span></p>
+        <p class="topic"><b>Inclusive design practices</b> — <span>designing for the full range of human diversity; "solve for one, extend to many" (curb-cut effect).</span></p>
+        <div class="concept"><b>Core concept — WCAG &amp; POUR:</b> the Web Content Accessibility Guidelines organise success criteria under four principles — Perceivable, Operable, Understandable, Robust — at conformance levels A / AA / AAA. AA is the common legal/target baseline.</div>
+        <div class="keyidea"><b>Key idea:</b> Accessibility isn't charity for a minority — it's the baseline, and accessible design (captions, contrast, keyboard support) is better design for <em>everyone</em>.</div>
+        <a class="xlink" href="index.html#a11y">↗ Explore: Accessibility Simulator + contrast checker</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Horton &amp; Quesenbery — <i>A Web for Everyone</i></b>, Chapters 1–2.</li>
+          <li><b>Lazar — <i>Research Methods in HCI</i></b>, Ch. 16 (working with research participants with disabilities).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Analyze the accessibility of a website or application.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 16 · LIVE IN-PERSON</p>
+        <h4>Accessibility &amp; Inclusive Design (2 of 2)</h4>
+        <p class="obj-line">Objective: audit accessibility and design with assistive technology in mind.</p>
+        <p class="topic"><b>Principles of accessibility (cont.)</b> — <span>applying POUR to forms, media and navigation.</span></p>
+        <p class="topic"><b>Assistive technologies (cont.)</b> — <span>testing with a screen reader and keyboard-only navigation.</span></p>
+        <p class="topic"><b>Inclusive design practices (cont.)</b> — <span>writing accessible content; designing for situational and temporary impairments too.</span></p>
+        <div class="concept"><b>Core concept — the curb-cut effect:</b> accommodations built for disabled users routinely benefit everyone (curb cuts help wheelchairs <em>and</em> strollers, luggage, cyclists). Inclusive design widens the market.</div>
+        <div class="keyidea"><b>Key idea:</b> Colour is decoration, not information. Always pair colour with text, icon or shape so colour-blind and low-vision users lose nothing.</div>
+        <a class="xlink" href="index.html#a11y">↗ Explore: colour-blindness filters</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Horton &amp; Quesenbery — <i>A Web for Everyone</i></b>, Chapters 1–2.</li>
+          <li><b>Lazar — <i>Research Methods in HCI</i></b>, Ch. 16.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Analyze the accessibility of a website or application.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 7 — Mobile & Multi-Platform -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 7 · Multi-Platform</span>
+        <h3>Mobile &amp; Multi-Platform Design</h3>
+      </div>
+      <span class="module-sessions">Sessions 17–18</span>
+    </div>
+    <p class="module-overview">Designing across screen sizes and modalities: responsive layout, mobile UX best practice, and multimodal / cross-device experiences (touch, voice, AR/VR).</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Apply responsive-design principles across breakpoints.</li>
+      <li>Follow mobile UX best practices (touch targets, thumb zones, performance).</li>
+      <li>Reason about multimodal and cross-device interaction.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 17 · LIVE IN-PERSON</p>
+        <h4>Mobile &amp; Multi-Platform Design (1 of 2)</h4>
+        <p class="obj-line">Objective: design one experience that adapts across devices.</p>
+        <p class="topic"><b>Design considerations for mobile &amp; multi-platform apps</b> — <span>different input methods, screen sizes, contexts of use and constraints.</span></p>
+        <p class="topic"><b>Responsive design</b> — <span>fluid grids, flexible media and breakpoints so layout (not content) adapts to the viewport.</span></p>
+        <p class="topic"><b>Mobile UX best practices</b> — <span>large enough touch targets, thumb-reachable controls, minimal input, fast loads.</span></p>
+        <div class="concept"><b>Core concept — Fitts's Law:</b> <code>MT = a + b·log₂(D/W + 1)</code> — time to acquire a target grows with distance and shrinks with target size. On touch screens this dictates minimum tap-target sizes (~44–48px) and placing key actions within thumb reach.</div>
+        <div class="keyidea"><b>Key idea:</b> "Mobile-first" isn't about phones — it's a discipline. The small screen forces you to cut to the essential <em>before</em> you have room to bloat.</div>
+        <a class="xlink" href="index.html#mobile">↗ Explore: three-breakpoint preview</a>
+        <a class="xlink" href="index.html#fitts">↗ Explore: Fitts's Law demo</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li><b>Neil, T. — <i>Mobile Design Pattern Gallery</i></b> (relevant pattern chapters).</li>
+          <li><b><i>The Handbook of Multimodal-Multisensor Interfaces</i>, Vol. 1</b> (foundations, user modeling, modality combinations).</li>
+          <li><b><i>Design of Multimodal Mobile Interfaces</i></b>.</li>
+          <li><b><i>Design Beyond Devices: Creating Multimodal, Cross-Device Experiences</i></b>.</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Design a prototype for a multimodal application (mobile, AR/VR, web).</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 18 · LIVE IN-PERSON</p>
+        <h4>Mobile &amp; Multi-Platform Design (2 of 2)</h4>
+        <p class="obj-line">Objective: extend the design into multimodal and cross-device contexts.</p>
+        <p class="topic"><b>Design considerations (cont.)</b> — <span>continuity across devices; respecting each platform's conventions.</span></p>
+        <p class="topic"><b>Responsive design (cont.)</b> — <span>content-out breakpoints; performance budgets on constrained networks.</span></p>
+        <p class="topic"><b>Mobile UX best practices (cont.)</b> — <span>gestures, offline states, permissions and notifications used respectfully.</span></p>
+        <div class="concept"><b>Core concept — multimodal interaction:</b> combining input/output modalities (touch, voice, gaze, gesture, haptics) lets users interact in the way that best fits their context and abilities — a key thread toward AR/VR and ambient computing.</div>
+        <div class="keyidea"><b>Key idea:</b> A great cross-device experience feels like <em>one</em> product handing off between screens, not three apps that happen to share a logo.</div>
+        <a class="xlink" href="index.html#mobile">↗ Explore: responsive breakpoints</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul>
+          <li>Neil · <i>Handbook of Multimodal-Multisensor Interfaces</i> Vol. 1 · <i>Design of Multimodal Mobile Interfaces</i> · <i>Design Beyond Devices</i> (as Session 17).</li>
+        </ul></div>
+        <span class="assign"><b>Assignment:</b> Design a prototype for a multimodal application (mobile, AR/VR, web).</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 8 — Group Project -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 8 · Applied Project</span>
+        <h3>User-Centered Design Project</h3>
+      </div>
+      <span class="module-sessions">Sessions 19–24</span>
+    </div>
+    <p class="module-overview">The capstone: a team applies the entire five-planes process end to end — research, strategy, scope, structure, skeleton, surface, prototype and evaluation — then presents it. Worth 30% of the grade (15% delivery + 15% presentation), assessed in Week 24.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Run a complete user-centered design process as a cross-functional team.</li>
+      <li>Iterate a prototype through regular check-ins and feedback.</li>
+      <li>Communicate design decisions and results to an audience.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 19 · LIVE IN-PERSON</p>
+        <h4>Project Kickoff</h4>
+        <p class="obj-line">Objective: form teams and frame the design problem.</p>
+        <p class="topic"><b>Group project kickoff</b> — <span>define the problem space, target users and scope.</span></p>
+        <p class="topic"><b>Designing &amp; prototyping a user-centered project</b> — <span>plan the process across the five planes.</span></p>
+        <p class="topic"><b>Regular project check-ins</b> — <span>establish the iteration/feedback cadence.</span></p>
+        <div class="concept"><b>Core concept — iterative, user-centered process:</b> design → prototype → test → refine, repeated. Each loop is informed by real users rather than internal opinion.</div>
+        <div class="keyidea"><b>Key idea:</b> Start narrow and real. A sharply defined problem for actual users beats a vague platform "for everyone."</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD (project-specific resources provided in class).</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Start working on the group user-centered design project.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 20 · LIVE IN-PERSON</p>
+        <h4>Project Work — Design &amp; Prototype</h4>
+        <p class="obj-line">Objective: produce a first working prototype.</p>
+        <p class="topic"><b>Designing &amp; prototyping (cont.)</b> — <span>translate research and IA into wireframes and a clickable prototype.</span></p>
+        <p class="topic"><b>Regular check-ins</b> — <span>surface blockers early; align the team.</span></p>
+        <div class="concept"><b>Core concept — design critique:</b> structured, constructive feedback on work-in-progress that critiques the artefact (against goals) rather than the person.</div>
+        <div class="keyidea"><b>Key idea:</b> Show the work early and often. Feedback on a rough prototype is cheap; feedback after launch is expensive.</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Continue the group user-centered design project.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 21 · LIVE IN-PERSON</p>
+        <h4>Project Development &amp; Refinement (1 of 2)</h4>
+        <p class="obj-line">Objective: refine the prototype against feedback.</p>
+        <p class="topic"><b>Project development &amp; refinement</b> — <span>iterate on flows, IA and visual design based on test findings.</span></p>
+        <p class="topic"><b>Regular check-ins</b> — <span>track progress against the plan.</span></p>
+        <div class="concept"><b>Core concept — usability-driven iteration:</b> let evaluation findings (Module 5 methods) directly drive the next design revision.</div>
+        <div class="keyidea"><b>Key idea:</b> Refinement means cutting as much as adding. Removing a confusing feature is a legitimate — often the best — improvement.</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Continue the group user-centered design project.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 22 · LIVE IN-PERSON</p>
+        <h4>Project Development &amp; Refinement (2 of 2)</h4>
+        <p class="obj-line">Objective: reach a presentation-ready prototype.</p>
+        <p class="topic"><b>Project development &amp; refinement (cont.)</b> — <span>polish, fix accessibility issues, finalise the design system.</span></p>
+        <p class="topic"><b>Regular check-ins</b> — <span>rehearse the narrative of the work.</span></p>
+        <div class="concept"><b>Core concept — design rationale:</b> the documented "why" behind decisions — essential for defending the design and for the presentation.</div>
+        <div class="keyidea"><b>Key idea:</b> A design is only as strong as your ability to explain <em>why</em> each choice serves the user.</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Continue the group user-centered design project.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 23 · LIVE IN-PERSON</p>
+        <h4>Project Presentation (1 of 2)</h4>
+        <p class="obj-line">Objective: present the project and defend its decisions.</p>
+        <p class="topic"><b>Finalizing &amp; presenting the group project</b> — <span>tell the story: problem → research → design → evidence.</span></p>
+        <p class="topic"><b>Class discussion</b> — <span>peer critique and Q&amp;A.</span></p>
+        <div class="concept"><b>Core concept — communicating UX:</b> translating process and evidence into a persuasive narrative for stakeholders — a core professional skill.</div>
+        <div class="keyidea"><b>Key idea:</b> Lead with the user's problem, not your solution. The audience must feel the pain before they value the fix. <em>(Assessed: Week 24 — 15% presentation + 15% delivery.)</em></div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Present the group project to the class.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 24 · LIVE IN-PERSON</p>
+        <h4>Project Presentation (2 of 2)</h4>
+        <p class="obj-line">Objective: complete presentations and reflect across teams.</p>
+        <p class="topic"><b>Finalizing &amp; presenting (cont.)</b> — <span>remaining team presentations.</span></p>
+        <p class="topic"><b>Class discussion</b> — <span>cross-team comparison and shared lessons.</span></p>
+        <div class="concept"><b>Core concept — reflective practice:</b> extracting transferable lessons from a finished project to improve the next one.</div>
+        <div class="keyidea"><b>Key idea:</b> The most valuable output of a project is often what you learned to do differently next time.</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Present the group project to the class.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 9 — Future, Cases, Exam -->
+  <div class="module">
+    <div class="module-head">
+      <div style="flex:1 1 260px">
+        <span class="module-tag">Module 9 · Horizons &amp; Wrap-Up</span>
+        <h3>Future Trends, Case Studies &amp; Final Exam</h3>
+      </div>
+      <span class="module-sessions">Sessions 25–30</span>
+    </div>
+    <p class="module-overview">Steps back to the field's frontier and the profession: emerging technologies and their ethics, real-world case studies and cross-functional teamwork, then review and the comprehensive final exam.</p>
+    <div class="outcomes"><h5>Module learning outcomes</h5><ul>
+      <li>Discuss emerging HCI technologies (VR, GenAI) and their ethical stakes.</li>
+      <li>Analyse real HCI successes and failures and work in cross-functional teams.</li>
+      <li>Consolidate the whole syllabus and demonstrate mastery in the final exam.</li>
+    </ul></div>
+
+    <div class="sessions">
+      <div class="sess">
+        <p class="sess-num">SESSION 25 · LIVE IN-PERSON</p>
+        <h4>Future Trends in HCI (1 of 2)</h4>
+        <p class="obj-line">Objective: examine where HCI is heading and the ethics it raises.</p>
+        <p class="topic"><b>Emerging technologies (VR, GenAI)</b> — <span>immersive and generative interfaces change how — and whether — users stay in control.</span></p>
+        <p class="topic"><b>Ethical considerations in HCI</b> — <span>dark patterns, persuasive design, privacy, bias, manipulation and attention economics.</span></p>
+        <p class="topic"><b>HCI research &amp; innovation</b> — <span>how the field investigates novel interactions responsibly.</span></p>
+        <div class="concept"><b>Core concept — dark patterns &amp; design ethics:</b> interfaces engineered to trick users into actions against their interest (hidden costs, forced continuity, confirm-shaming). Ethical design respects user autonomy and transparency.</div>
+        <div class="keyidea"><b>Key idea:</b> "Can we?" is an engineering question; "should we?" is the designer's. New capability without new ethics produces new harm.</div>
+        <a class="xlink" href="index.html#future">↗ Explore: Future Trends &amp; Ethics cards</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD (current articles on VR / GenAI ethics provided in class).</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Write a reflection paper on the ethical considerations in HCI.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 26 · LIVE IN-PERSON</p>
+        <h4>Future Trends in HCI (2 of 2)</h4>
+        <p class="obj-line">Objective: connect emerging tech to responsible innovation.</p>
+        <p class="topic"><b>Emerging technologies (cont.)</b> — <span>multimodal AI, conversational and ambient interfaces.</span></p>
+        <p class="topic"><b>Ethical considerations (cont.)</b> — <span>accountability, explainability and inclusion in AI-driven UX.</span></p>
+        <p class="topic"><b>HCI research &amp; innovation (cont.)</b> — <span>turning research into responsible products.</span></p>
+        <div class="concept"><b>Core concept — value-sensitive &amp; human-centered AI:</b> designing intelligent systems that keep humans in control, surface uncertainty, and account for the values of all stakeholders.</div>
+        <div class="keyidea"><b>Key idea:</b> As interfaces get more autonomous, the designer's job shifts from arranging controls to safeguarding human agency.</div>
+        <a class="xlink" href="index.html#future">↗ Explore: upside vs. dark pattern</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>TBD.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Write a reflection paper on the ethical considerations in HCI.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 27 · LIVE IN-PERSON</p>
+        <h4>HCI Industry Case Studies (1 of 2)</h4>
+        <p class="obj-line">Objective: learn from real successes and failures in industry.</p>
+        <p class="topic"><b>Working with cross-functional teams</b> — <span>designers, engineers, PMs and researchers collaborating; shared language and artefacts.</span></p>
+        <p class="topic"><b>Analyzing real-world HCI successes &amp; failures</b> — <span>what made famous products usable — or notoriously not.</span></p>
+        <p class="topic"><b>Guest speakers from industry</b> — <span>practitioner perspectives (TBD).</span></p>
+        <div class="concept"><b>Core concept — cross-functional collaboration:</b> UX is a team sport; the designer's influence comes through communication and shared artefacts, not authority.</div>
+        <div class="keyidea"><b>Key idea:</b> Study failures as hard as successes — a well-analysed disaster (e.g., a confusing checkout or a deadly UI) teaches more than a polished case.</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li><b>Case studies from HCI journals and books</b> (selected in class).</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Analyze and present an HCI case study of your choice.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 28 · LIVE IN-PERSON</p>
+        <h4>HCI Industry Case Studies (2 of 2)</h4>
+        <p class="obj-line">Objective: present and discuss case-study analyses.</p>
+        <p class="topic"><b>Working with cross-functional teams (cont.)</b> — <span>handling conflict and aligning incentives.</span></p>
+        <p class="topic"><b>Analyzing successes &amp; failures (cont.)</b> — <span>student presentations and discussion.</span></p>
+        <p class="topic"><b>Guest speakers (cont.)</b> — <span>practitioner Q&amp;A (TBD).</span></p>
+        <div class="concept"><b>Core concept — evidence-based design arguments:</b> using documented case evidence to justify design positions rather than personal taste.</div>
+        <div class="keyidea"><b>Key idea:</b> Patterns repeat. The failure you analyse today is the mistake you'll recognise — and avoid — in your own work tomorrow.</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li><b>Case studies from HCI journals and books.</b></li></ul></div>
+        <span class="assign"><b>Assignment:</b> Analyze and present an HCI case study of your choice.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 29 · LIVE IN-PERSON</p>
+        <h4>Course Wrap-Up &amp; Exam Prep</h4>
+        <p class="obj-line">Objective: consolidate the whole syllabus.</p>
+        <p class="topic"><b>Review of key concepts &amp; takeaways</b> — <span>re-walk the five planes plus research, accessibility and ethics.</span></p>
+        <p class="topic"><b>Prepare for the final exam</b> — <span>clarify scope and format.</span></p>
+        <div class="concept"><b>Core concept — synthesis:</b> seeing how each topic connects — strategy constrains scope, scope shapes structure, and research/accessibility/ethics cut across all five planes.</div>
+        <div class="keyidea"><b>Key idea:</b> If you can re-draw the five planes from memory and place every topic on them, you understand the course. (Try the <a href="index.html#quiz">quiz</a>.)</div>
+        <a class="xlink" href="index.html#quiz">↗ Explore: self-test quiz</a>
+        <a class="xlink" href="#glossary">↗ Review: key-concepts glossary</a>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>Review course materials, notes and textbooks.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Review for the final exam.</span>
+      </div>
+
+      <div class="sess">
+        <p class="sess-num">SESSION 30 · LIVE IN-PERSON</p>
+        <h4>Final Exam &amp; Course Retro</h4>
+        <p class="obj-line">Objective: demonstrate mastery and reflect on the journey.</p>
+        <p class="topic"><b>Final exam on course material</b> — <span>comprehensive, covering all modules (30% of the final grade).</span></p>
+        <p class="topic"><b>Course retro</b> — <span>look back on lessons learned and personal growth as an HCI practitioner.</span></p>
+        <div class="concept"><b>Core concept — reflective practitioner:</b> a professional who continually examines their own practice to improve — the final learning objective of the course.</div>
+        <div class="keyidea"><b>Key idea:</b> The course ends, the practice doesn't. Good HCI practitioners keep asking "did this actually work for the user?" long after the grade is in.</div>
+        <div class="readings"><p class="rh">Suggested readings</p><ul><li>Review course materials, notes and textbooks.</li></ul></div>
+        <span class="assign"><b>Assignment:</b> Complete the final exam; course retro.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== GLOSSARY ============================== -->
+<section id="glossary" class="section">
+  <h2><span class="num">06</span> Key Concepts — Glossary</h2>
+  <p class="subtitle">The vocabulary you'll be expected to use precisely. Many map to an interactive demo on the <a href="index.html#top">concept map</a>.</p>
+
+  <dl class="glossary">
+    <div class="term"><dt>Human–Computer Interaction (HCI)</dt><dd>Interdisciplinary study and design of how people interact with computing systems, spanning CS, cognitive psychology and design.</dd></div>
+    <div class="term"><dt>User Experience (UX)</dt><dd>The whole experience a person has with a product — usefulness, usability, desirability and the feelings around it.</dd></div>
+    <div class="term"><dt>User Interface (UI)</dt><dd>The point of contact between user and system: the visual, interactive layer through which UX is delivered.</dd></div>
+    <div class="term"><dt>User-Centered Design (UCD)</dt><dd>An iterative process that places real users and their needs at the centre of every design decision.</dd></div>
+    <div class="term"><dt>The Five Planes</dt><dd>Garrett's model: Strategy → Scope → Structure → Skeleton → Surface, moving from abstract purpose to concrete visuals.</dd></div>
+    <div class="term"><dt>Strategy plane</dt><dd>User needs + product objectives. The foundation that constrains every plane above it.</dd></div>
+    <div class="term"><dt>Scope plane</dt><dd>Functional and content requirements — the negotiated specification of what gets built.</dd></div>
+    <div class="term"><dt>Structure plane</dt><dd>Interaction design + information architecture: how the parts connect and how content is organised.</dd></div>
+    <div class="term"><dt>Skeleton plane</dt><dd>Interface, navigation and information design — the concrete arrangement (wireframes) that makes content reachable.</dd></div>
+    <div class="term"><dt>Surface plane</dt><dd>The sensory layer: colour, typography, imagery, motion — ideally a coherent system of design tokens.</dd></div>
+    <div class="term"><dt>Persona</dt><dd>An evidence-based archetype of a user (goals, frustrations, context) used to build empathy and settle decisions.</dd></div>
+    <div class="term"><dt>Scenario</dt><dd>A short narrative of a persona accomplishing a task, used to test whether a design supports real goals.</dd></div>
+    <div class="term"><dt>MoSCoW</dt><dd>A prioritisation method: Must / Should / Could / Won't-have-this-time.</dd></div>
+    <div class="term"><dt>Information Architecture (IA)</dt><dd>The organisation, labelling, navigation and search structures of a shared information environment.</dd></div>
+    <div class="term"><dt>Card sorting</dt><dd>A research method where users group content items, revealing their mental model to inform IA.</dd></div>
+    <div class="term"><dt>Wireframe</dt><dd>A low-fidelity layout showing arrangement and hierarchy, deliberately stripped of visual styling.</dd></div>
+    <div class="term"><dt>Prototype (lo/hi-fi)</dt><dd>A testable model of a design; low-fi tests structure/flow, high-fi tests look, feel and micro-interactions.</dd></div>
+    <div class="term"><dt>Design tokens</dt><dd>Named design variables (colour, spacing, radius, type) that make a visual system consistent and changeable.</dd></div>
+    <div class="term"><dt>Nielsen's 10 heuristics</dt><dd>Ten rules of thumb for usability inspection (visibility of status, match to real world, user control, etc.).</dd></div>
+    <div class="term"><dt>Heuristic evaluation</dt><dd>Experts inspect an interface against recognised heuristics to find usability problems quickly.</dd></div>
+    <div class="term"><dt>Usability testing</dt><dd>Observing real users attempting real tasks to find where a design fails them.</dd></div>
+    <div class="term"><dt>Cognitive walkthrough</dt><dd>An expert method simulating a first-time user's thought process step by step through a task.</dd></div>
+    <div class="term"><dt>Fitts's Law</dt><dd>Time to acquire a target ∝ log₂(distance/size + 1): bigger, closer targets are faster to hit.</dd></div>
+    <div class="term"><dt>Jakob's Law</dt><dd>Users expect your product to work like the others they already use; honour familiar conventions.</dd></div>
+    <div class="term"><dt>Gestalt principles</dt><dd>Perceptual grouping rules (proximity, similarity, closure, continuity, figure/ground) designers exploit.</dd></div>
+    <div class="term"><dt>Qualitative vs. quantitative</dt><dd>Qual explains <em>why</em> (rich, small N); quant measures <em>how much/many</em> (generalisable, large N).</dd></div>
+    <div class="term"><dt>Attitudinal vs. behavioral</dt><dd>What users <em>say</em> vs. what they <em>do</em> — two axes of the NN/g research-methods landscape.</dd></div>
+    <div class="term"><dt>Accessibility</dt><dd>Designing so people with disabilities can perceive, operate and understand a product.</dd></div>
+    <div class="term"><dt>WCAG &amp; POUR</dt><dd>Web Content Accessibility Guidelines, organised under Perceivable, Operable, Understandable, Robust (levels A/AA/AAA).</dd></div>
+    <div class="term"><dt>Curb-cut effect</dt><dd>Accommodations for disabled users that end up benefiting everyone.</dd></div>
+    <div class="term"><dt>Responsive design</dt><dd>Layouts that adapt fluidly across screen sizes using flexible grids, media and breakpoints.</dd></div>
+    <div class="term"><dt>Multimodal interaction</dt><dd>Interfaces combining input/output modes (touch, voice, gaze, gesture, haptics).</dd></div>
+    <div class="term"><dt>Dark pattern</dt><dd>An interface trick that manipulates users into actions against their own interest.</dd></div>
+  </dl>
+</section>
+
+<!-- ============================== BIBLIOGRAPHY ============================== -->
+<section id="biblio" class="section">
+  <h2><span class="num">07</span> Annotated Bibliography</h2>
+  <p class="subtitle">The course's core and supporting readings, with a note on why each matters.</p>
+
+  <div class="biblio">
+    <div class="bib"><p class="bt">The Elements of User Experience <span style="color:var(--muted);font-weight:400">(2nd ed.)</span></p><p class="ba">Jesse James Garrett · New Riders, 2011</p><p class="bd">The course's backbone. Introduces the five-planes model used in Sessions 1–10. Concise and foundational — read the relevant chapter before each early session.</p></div>
+    <div class="bib"><p class="bt">Rocket Surgery Made Easy</p><p class="ba">Steve Krug · New Riders, 2010</p><p class="bd">A practical, jargon-free guide to do-it-yourself usability testing. The reference for running your own tests in Module 5 without a lab or budget.</p></div>
+    <div class="bib"><p class="bt">When to Use Which User-Experience Research Methods</p><p class="ba">Nielsen Norman Group (article)</p><p class="bd">Maps research methods on the attitudinal↔behavioral and qual↔quant axes — the framework behind the Research Methods Quadrant demo.</p></div>
+    <div class="bib"><p class="bt">Quantitative User-Research Methodologies: An Overview</p><p class="ba">Nielsen Norman Group (article)</p><p class="bd">Companion piece focused on measurement: surveys, analytics and metrics for UX. Read alongside the article above.</p></div>
+    <div class="bib"><p class="bt">Observing the User Experience: A Practitioner's Guide to User Research</p><p class="ba">Elizabeth Goodman, Mike Kuniavsky &amp; Andrea Moed · Morgan Kaufmann</p><p class="bd">A comprehensive practitioner handbook covering the full toolkit of qualitative and quantitative research methods.</p></div>
+    <div class="bib"><p class="bt">Quantitative User Experience Research</p><p class="ba">Chris Chapman &amp; Kerry Rodden · Apress</p><p class="bd">Deeper treatment of statistical and large-scale UX research methods for data-minded students.</p></div>
+    <div class="bib"><p class="bt">Measuring the User Experience</p><p class="ba">Bill Albert &amp; Tom Tullis · Morgan Kaufmann</p><p class="bd">The reference on UX metrics — how to collect, analyse and present usability data (task success, time, satisfaction, SUS).</p></div>
+    <div class="bib"><p class="bt">A Web for Everyone: Designing Accessible User Experiences</p><p class="ba">Sarah Horton &amp; Whitney Quesenbery · Rosenfeld Media, 2014</p><p class="bd">Core accessibility reading (Chapters 1–2 for Module 6). Frames accessible, inclusive design as good design for all.</p></div>
+    <div class="bib"><p class="bt">Research Methods in Human-Computer Interaction</p><p class="ba">Jonathan Lazar et al. · Ch. 16 (research participants with disabilities)</p><p class="bd">How to involve participants with disabilities ethically and effectively — the research counterpart to accessible design.</p></div>
+    <div class="bib"><p class="bt">Mobile Design Pattern Gallery</p><p class="ba">Theresa Neil · O'Reilly</p><p class="bd">A catalogue of proven mobile UI patterns; the practical reference for Module 7's mobile/responsive work.</p></div>
+    <div class="bib"><p class="bt">The Handbook of Multimodal-Multisensor Interfaces, Vol. 1</p><p class="ba">Foundations, User Modeling &amp; Common Modality Combinations</p><p class="bd">Academic foundation for multimodal interaction — the theory behind touch/voice/gesture/AR-VR design.</p></div>
+    <div class="bib"><p class="bt">Design of Multimodal Mobile Interfaces</p><p class="ba">(edited volume)</p><p class="bd">Focused treatment of combining input/output modalities on mobile devices.</p></div>
+    <div class="bib"><p class="bt">Design Beyond Devices: Creating Multimodal, Cross-Device Experiences</p><p class="ba">Cheryl Platz · Rosenfeld Media</p><p class="bd">How to design coherent experiences that span screens, voice and ambient computing — the frontier addressed in Sessions 17–18 and 25–26.</p></div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+  <p>Course structure for <strong>UX, UI &amp; Human–Computer Interaction</strong> · UXUI-CSAI.4.M.A · BCSAI · IE University · 2025–26.</p>
+  <p>Built from the official syllabus (Prof. Robert David Polding). See the <a href="SYLLABUS.pdf">original PDF</a> or the <a href="index.html#top">interactive concept map</a>.</p>
+  <p class="foot-credit">References: Garrett (2011) · Krug (2010) · NN/g · Horton &amp; Quesenbery (2014) · Lazar et al. · Neil · Albert &amp; Tullis · Goodman et&nbsp;al.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
