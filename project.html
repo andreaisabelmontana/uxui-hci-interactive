@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Worked Example Project — Transit Ticketing App UX Case Study · UX·UI·HCI</title>
+<meta name="description" content="A model end-to-end UX case study for the UX/UI/HCI course (BCSAI, IE University): discovery, personas, journey map, IA, lo-fi to hi-fi wireframes, usability test with SUS, WCAG AA audit, and iteration — every artifact justified by HCI principles." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c5cff'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='34' font-family='system-ui' fill='white' font-weight='800'%3EUX%3C/text%3E%3C/svg%3E" />
+<style>
+/* ===== project.html specific styles (layered on styles.css) ===== */
+.proj-hero { padding: 96px 22px 56px; }
+.proj-hero .hero-inner { max-width: 940px; }
+.crumbs { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; font-size:13px; color:var(--muted); margin-bottom:18px; }
+.crumbs a { color:var(--primary-2); text-decoration:none; }
+.crumbs a:hover { text-decoration:underline; }
+
+.meta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:22px; }
+.meta-card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; text-align:left; }
+.meta-card .mk { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin:0 0 6px; }
+.meta-card .mv { font-size:15px; font-weight:700; margin:0; }
+
+.cc { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+.cc + .cc { margin-top:18px; }
+.lead { font-size:17px; color:var(--text); }
+
+/* phase pill row */
+.phase-row { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 30px; }
+.phase-pill { background:var(--bg-2); border:1px solid var(--line); border-radius:99px; padding:7px 14px; font-size:13px; color:var(--muted); }
+.phase-pill b { color:var(--primary-2); font-family:ui-monospace,monospace; margin-right:6px; }
+
+/* generic cards grid */
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.grid-auto { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+.tile { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+.tile h4 { margin:0 0 8px; font-size:16px; }
+.tile p { margin:0; color:var(--muted); font-size:14px; }
+.tile .tk { font-family:ui-monospace,monospace; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:8px; }
+
+/* highlighted insight box */
+.insight { background:color-mix(in srgb, var(--primary) 12%, var(--panel)); border:1px solid var(--primary); border-radius:12px; padding:14px 18px; margin:16px 0; font-size:14px; }
+.insight b { color:var(--primary-2); }
+.principle { background:color-mix(in srgb, var(--accent) 10%, var(--panel)); border-left:3px solid var(--accent); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:13.5px; }
+.principle b { color:var(--accent); }
+
+/* persona cards reused look */
+.persona-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.pcard { background:linear-gradient(135deg,var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+.pcard .pc-head { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+.pcard .pc-av { width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--accent)); display:grid; place-items:center; font-size:26px; font-weight:800; color:#fff; flex:0 0 auto; }
+.pcard h4 { margin:0; font-size:20px; }
+.pcard .pc-tag { color:var(--accent); font-size:13px; margin:2px 0 0; }
+.pcard blockquote { border-left:3px solid var(--primary); margin:14px 0; padding:4px 0 4px 14px; color:var(--muted); font-style:italic; font-size:14px; }
+.pcard .pc-list { margin:10px 0 0; padding:0; list-style:none; display:grid; gap:8px; }
+.pcard .pc-list li { font-size:13.5px; }
+.pcard .pc-list b { color:var(--primary-2); font-size:11px; text-transform:uppercase; letter-spacing:1px; display:block; color:var(--muted); }
+
+/* journey map */
+.journey { overflow-x:auto; padding-bottom:8px; }
+.journey table { border-collapse:collapse; width:100%; min-width:760px; font-size:13.5px; }
+.journey th, .journey td { border:1px solid var(--line); padding:12px 14px; text-align:left; vertical-align:top; }
+.journey th { background:var(--bg-2); color:var(--primary-2); font-family:ui-monospace,monospace; font-size:12px; letter-spacing:1px; text-transform:uppercase; }
+.journey td:first-child { font-weight:700; color:var(--text); background:var(--panel-2); white-space:nowrap; }
+.emoji-line { font-size:20px; }
+.pain { color:var(--bad); }
+.opp { color:var(--good); }
+
+/* sitemap / IA tree */
+.ascii { background:var(--bg-2); border:1px solid var(--line); border-radius:12px; padding:18px 20px; overflow-x:auto; font-family:ui-monospace,monospace; font-size:13px; line-height:1.7; color:var(--text); white-space:pre; }
+.ascii .root { color:var(--accent); font-weight:700; }
+.ascii .node { color:var(--primary-2); }
+
+/* flows */
+.flow { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:14px 0; }
+.flow .step { background:var(--bg-2); border:1px solid var(--line); border-radius:10px; padding:9px 14px; font-size:13px; }
+.flow .arr { color:var(--primary-2); font-weight:700; }
+.flow .step.alt { border-color:var(--warn); color:var(--warn); }
+
+/* wireframe ascii boxes */
+.wire { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; }
+.wire pre { background:var(--bg-2); border:1px solid var(--line); border-radius:10px; padding:16px; overflow-x:auto; font-family:ui-monospace,monospace; font-size:12px; line-height:1.55; color:var(--text); white-space:pre; margin:0; }
+.wire-cap { color:var(--muted); font-size:13px; margin:0 0 12px; }
+
+/* generic results / data table */
+.dtable { overflow-x:auto; }
+.dtable table { border-collapse:collapse; width:100%; font-size:14px; }
+.dtable th, .dtable td { border:1px solid var(--line); padding:11px 14px; text-align:left; }
+.dtable th { background:var(--bg-2); color:var(--primary-2); font-family:ui-monospace,monospace; font-size:12px; letter-spacing:1px; text-transform:uppercase; }
+.dtable tr:hover td { background:var(--panel-2); }
+.dtable .good { color:var(--good); font-weight:700; }
+.dtable .warn { color:var(--warn); font-weight:700; }
+.dtable .bad { color:var(--bad); font-weight:700; }
+.score-big { font-size:46px; font-weight:800; background:linear-gradient(120deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1; }
+
+/* checklist */
+.check { display:grid; gap:10px; }
+.check-item { display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:start; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px 16px; }
+.check-item .ci-mark { font-size:18px; line-height:1.4; }
+.check-item .ci-body h5 { margin:0 0 3px; font-size:14px; }
+.check-item .ci-body p { margin:0; color:var(--muted); font-size:13px; }
+.check-item .ci-tag { font-family:ui-monospace,monospace; font-size:11px; color:var(--muted); white-space:nowrap; align-self:center; }
+.pass { color:var(--good); } .fixed { color:var(--warn); }
+
+/* before/after iteration */
+.ba { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.ba .col { border:1px solid var(--line); border-radius:var(--radius); padding:18px; }
+.ba .col.before { background:color-mix(in srgb, var(--bad) 8%, var(--panel)); }
+.ba .col.after { background:color-mix(in srgb, var(--good) 8%, var(--panel)); }
+.ba .col h5 { margin:0 0 10px; font-size:13px; text-transform:uppercase; letter-spacing:1.5px; }
+.ba .col.before h5 { color:var(--bad); } .ba .col.after h5 { color:var(--good); }
+.ba ul { margin:0; padding-left:18px; } .ba li { font-size:13.5px; margin:6px 0; }
+
+/* outcomes mapping */
+.lo-grid { display:grid; gap:12px; }
+.lo { display:grid; grid-template-columns:auto 1fr; gap:14px; background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--primary); border-radius:12px; padding:14px 18px; }
+.lo .lo-i { font-family:ui-monospace,monospace; color:var(--primary-2); font-weight:700; }
+.lo p { margin:0; font-size:14px; }
+.lo .lo-where { color:var(--muted); font-size:13px; margin-top:6px; display:block; }
+.lo .lo-where a { color:var(--primary-2); }
+
+/* references */
+.refs { display:grid; gap:10px; }
+.ref { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 16px; font-size:13.5px; color:var(--muted); }
+.ref b { color:var(--text); }
+
+/* cross-link chips */
+.xlinks { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.xlink { background:var(--bg-2); border:1px solid var(--line); border-radius:99px; padding:6px 13px; font-size:12.5px; color:var(--primary-2); text-decoration:none; }
+.xlink:hover { background:var(--panel); border-color:var(--primary); }
+
+.toc { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.toc a { background:var(--bg-2); border:1px solid var(--line); border-radius:8px; padding:7px 12px; font-size:13px; color:var(--primary-2); text-decoration:none; }
+.toc a:hover { background:var(--panel); border-color:var(--primary); }
+
+@media (max-width: 880px) {
+  .grid-2, .persona-2, .ba { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- ============================== NAV ============================== -->
+<header class="nav">
+  <a href="./index.html#top" class="brand">
+    <span class="brand-dot"></span><span>UX·UI·HCI</span>
+  </a>
+  <nav class="nav-links">
+    <a href="./index.html#top">← Concept map</a>
+    <a href="./course.html">Course outline</a>
+    <a href="#overview">Overview</a>
+    <a href="#discovery">Discovery</a>
+    <a href="#personas">Personas</a>
+    <a href="#ia">IA &amp; flows</a>
+    <a href="#wireframes">Wireframes</a>
+    <a href="#usability">Usability test</a>
+    <a href="#a11y">Accessibility</a>
+    <a href="#iteration">Iteration</a>
+    <a href="#outcomes">Outcomes</a>
+    <a href="#references">References</a>
+    <a href="./SYLLABUS.pdf">PDF syllabus ↗</a>
+  </nav>
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">◐</button>
+</header>
+
+<!-- ============================== HERO ============================== -->
+<section id="top" class="hero proj-hero">
+  <div class="hero-inner">
+    <div class="crumbs">
+      <a href="./index.html#top">Interactive concept map</a><span>·</span><a href="./course.html">Course structure</a><span>·</span><span>Worked-example project</span>
+    </div>
+    <p class="kicker">A model end-to-end UX case study · BCSAI · IE University</p>
+    <h1>Redesigning a <span class="grad">city-transit ticketing app</span> — the whole process, one artifact at a time.</h1>
+    <p class="lede">This is what the group project from Sessions 19–24 looks like when it's done well: research before pixels, every decision traceable to an HCI principle, and a measurable usability gain at the end. No code — just the deliverables a UX team actually produces.</p>
+    <div class="toc">
+      <a href="#overview">01 Overview</a>
+      <a href="#discovery">02 Discovery</a>
+      <a href="#personas">03 Personas &amp; journey</a>
+      <a href="#ia">04 IA &amp; flows</a>
+      <a href="#wireframes">05 Wireframes</a>
+      <a href="#usability">06 Usability &amp; SUS</a>
+      <a href="#a11y">07 Accessibility</a>
+      <a href="#iteration">08 Iteration</a>
+      <a href="#outcomes">09 Outcomes</a>
+      <a href="#references">10 References</a>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-card"><p class="mk">Product</p><p class="mv">CityHop — transit ticketing</p></div>
+      <div class="meta-card"><p class="mk">Sessions exercised</p><p class="mv">2–24 (most of the course)</p></div>
+      <div class="meta-card"><p class="mk">Method</p><p class="mv">Garrett's 5 planes</p></div>
+      <div class="meta-card"><p class="mk">Outcome</p><p class="mv">SUS 54 → 82</p></div>
+    </div>
+  </div>
+  <div class="hero-orbs" aria-hidden="true">
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  </div>
+</section>
+
+<!-- ============================== 01 OVERVIEW ============================== -->
+<section id="overview" class="section">
+  <h2><span class="num">01</span> Project overview</h2>
+  <p class="subtitle">The brief, the constraint, and the deliverable — the "Strategy plane" stated in one breath before any design begins.</p>
+
+  <div class="cc">
+    <p class="lead">CityHop is a fictional mid-size city's official transit app. Riders can see times and routes, but <b>buying a ticket is where they bail</b>: 41% of sessions that reach the purchase screen end without a completed payment. Our job is to redesign the buy-a-ticket experience so that an anxious, time-pressured rider on a crowded platform can buy the right ticket in under 30 seconds — and trust that they did.</p>
+    <div class="insight"><b>Strategy in one line.</b> <em>Help riders buy the correct ticket fast and confidently, on a phone, often one-handed, often under stress.</em> Everything below this line — scope, structure, skeleton, surface — is judged against it (Garrett, 2011).</div>
+  </div>
+
+  <div class="grid-auto" style="margin-top:18px">
+    <div class="tile"><span class="tk">Goal</span><h4>Reduce purchase abandonment</h4><p>From 41% to under 20% at the payment step, without removing options power-users rely on.</p></div>
+    <div class="tile"><span class="tk">Constraint</span><h4>Phone, one-handed, hostile context</h4><p>Bright sun, poor signal, a train arriving. The design must survive its worst-case environment, not its best.</p></div>
+    <div class="tile"><span class="tk">Deliverable</span><h4>A validated prototype + report</h4><p>Personas, journey map, IA, lo-fi → hi-fi wireframes, a usability study with a SUS score, an accessibility audit, and an iteration log.</p></div>
+    <div class="tile"><span class="tk">Success metric</span><h4>Task time &amp; SUS</h4><p>Median time-to-purchase and System Usability Scale score, measured before and after redesign.</p></div>
+  </div>
+
+  <div class="cc" style="margin-top:18px">
+    <h4 style="margin-top:0">How this maps to the 5 planes</h4>
+    <div class="phase-row" style="margin-bottom:0">
+      <span class="phase-pill"><b>Strategy</b> §1 goal &amp; metrics</span>
+      <span class="phase-pill"><b>Scope</b> §2 prioritised requirements</span>
+      <span class="phase-pill"><b>Structure</b> §4 IA &amp; flows</span>
+      <span class="phase-pill"><b>Skeleton</b> §5 wireframes</span>
+      <span class="phase-pill"><b>Surface</b> §5 hi-fi visual design</span>
+    </div>
+    <div class="xlinks">
+      <a class="xlink" href="./index.html#planes">↗ Concept map: the 5 planes</a>
+      <a class="xlink" href="./course.html#program">↗ Course: Strategy &amp; Scope (Sessions 2–5)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 02 DISCOVERY ============================== -->
+<section id="discovery" class="section">
+  <h2><span class="num">02</span> Discovery &amp; user research</h2>
+  <p class="subtitle">Before deciding <em>what</em> to build (Scope), we found out <em>who</em> we're building for and <em>why</em> the current app fails them. Methods chosen with the NN/g research-method framework in mind.</p>
+
+  <div class="grid-2">
+    <div class="tile">
+      <span class="tk">Methods used</span>
+      <h4>A mix of attitudinal + behavioural</h4>
+      <p style="margin-bottom:10px"><b>9 contextual interviews</b> at three stations across the morning peak (qualitative, attitudinal — <em>why</em> people struggle).</p>
+      <p style="margin-bottom:10px"><b>Analytics funnel review</b> of 12 weeks of sessions (quantitative, behavioural — <em>where</em> they drop).</p>
+      <p style="margin-bottom:10px"><b>5 moderated usability sessions</b> on the existing app (behavioural — what people <em>do</em>, not what they say).</p>
+      <p><b>1 heuristic evaluation</b> against Nielsen's 10 (expert review, cheap signal before recruiting users).</p>
+    </div>
+    <div class="tile">
+      <span class="tk">Why these methods</span>
+      <h4>Triangulation beats any single source</h4>
+      <p style="margin-bottom:10px">Interviews tell us <em>why</em>; analytics tell us <em>how much</em>; usability sessions catch problems users can't articulate. Krug's point in <em>Rocket Surgery Made Easy</em>: five users surface most serious issues, so we tested small and often rather than running one big study late.</p>
+      <div class="principle"><b>Heuristic before users.</b> The expert review found obvious violations (no error recovery, hidden fares) for the cost of one afternoon — we fixed those first so test participants' time wasn't wasted on known bugs.</div>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-top:18px">
+    <h4 style="margin-top:0">What we learned — top findings</h4>
+    <div class="grid-auto">
+      <div class="tile"><span class="tk">Finding 01 · severe</span><h4>"Which ticket do I even need?"</h4><p>7/9 interviewees couldn't tell a single ride from a day pass without reading dense text. Zone names meant nothing to them.</p></div>
+      <div class="tile"><span class="tk">Finding 02 · severe</span><h4>Fare is hidden until the end</h4><p>Price only appears after selecting payment. Users abandoned rather than risk an unknown charge — a violation of <em>visibility of system status</em>.</p></div>
+      <div class="tile"><span class="tk">Finding 03 · moderate</span><h4>Tiny tap targets, moving train</h4><p>The ticket-type selector used 28px text links spaced 6px apart. On a moving train, mis-taps were constant (a Fitts's Law failure).</p></div>
+      <div class="tile"><span class="tk">Finding 04 · moderate</span><h4>No proof of purchase at a glance</h4><p>After paying, users weren't sure it worked. They re-opened the app repeatedly at the gate — anxiety, not confidence.</p></div>
+      <div class="tile"><span class="tk">Finding 05 · minor</span><h4>Sign-in wall before browsing</h4><p>The app demanded an account before showing any fares, adding friction for the most time-critical task (the single ride).</p></div>
+      <div class="tile"><span class="tk">Finding 06 · minor</span><h4>Colour-only status</h4><p>Active vs. expired tickets differed only by a green/red dot — invisible to ~8% of male riders with colour-vision deficiency.</p></div>
+    </div>
+    <div class="insight" style="margin-top:18px"><b>From findings to scope.</b> These six findings become the prioritised requirements on the Scope plane. Findings 1, 2 and 4 attack the "confidence" half of the goal; 3 and 5 attack the "fast" half. <b>If everything were a "must", nothing would be</b> — so we ranked them with MoSCoW.</div>
+    <div class="xlinks">
+      <a class="xlink" href="./index.html#research">↗ Concept map: pick the right research method</a>
+      <a class="xlink" href="./index.html#scope">↗ Concept map: MoSCoW scope sorter</a>
+      <a class="xlink" href="./course.html#program">↗ Course: User Research (Sessions 11–14)</a>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-top:18px">
+    <h4 style="margin-top:0">Scope plane — MoSCoW prioritisation</h4>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Priority</th><th>Requirement</th><th>Why it's here</th></tr></thead>
+        <tbody>
+          <tr><td><span class="bad">MUST</span></td><td>Show fare up-front, before payment</td><td>Directly fixes the #1 abandonment cause (Finding 02).</td></tr>
+          <tr><td><span class="bad">MUST</span></td><td>Plain-language ticket types with a recommended default</td><td>Removes the "which ticket?" paralysis (Finding 01).</td></tr>
+          <tr><td><span class="bad">MUST</span></td><td>Large, well-spaced tap targets (≥48px)</td><td>Survives the moving-train context (Finding 03, Fitts).</td></tr>
+          <tr><td><span class="bad">MUST</span></td><td>Unmistakable post-purchase confirmation + active-ticket screen</td><td>Builds confidence at the gate (Finding 04).</td></tr>
+          <tr><td><span class="warn">SHOULD</span></td><td>Guest checkout for single rides</td><td>Removes the sign-in wall for the most urgent task (Finding 05).</td></tr>
+          <tr><td><span class="warn">SHOULD</span></td><td>Status shown by icon + label, never colour alone</td><td>Accessibility baseline (Finding 06, WCAG 1.4.1).</td></tr>
+          <tr><td><span style="color:var(--primary-2);font-weight:700">COULD</span></td><td>Saved favourite routes; Apple/Google Pay</td><td>Speeds up repeat users; not blocking the core goal.</td></tr>
+          <tr><td><span class="muted" style="color:var(--muted)">WON'T</span></td><td>Social features, trip gamification, in-app chat</td><td>Out of scope this release — pure scope-creep risk.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 03 PERSONAS + JOURNEY ============================== -->
+<section id="personas" class="section">
+  <h2><span class="num">03</span> Personas &amp; journey map</h2>
+  <p class="subtitle">Two personas distilled from the interviews — concrete people to design <em>for</em>, not a vague "the user". Then a journey map of the primary persona buying a ticket on today's app, exposing the emotional low points.</p>
+
+  <div class="persona-2">
+    <article class="pcard">
+      <div class="pc-head">
+        <div class="pc-av">N</div>
+        <div><h4>Nadia, 24</h4><p class="pc-tag">Commuter · primary persona</p></div>
+      </div>
+      <blockquote>"I just want the right ticket before the train comes — I don't want to think."</blockquote>
+      <ul class="pc-list">
+        <li><b>Context</b>Catches the 8:12 daily; phone in one hand, coffee in the other.</li>
+        <li><b>Goal</b>Buy a single ride in seconds, every weekday, without re-reading the options.</li>
+        <li><b>Frustration</b>Never sure she picked the cheapest valid ticket; the price only shows at the end.</li>
+        <li><b>Tech comfort</b>High — but zero patience for friction on a task she does 10× a week.</li>
+      </ul>
+    </article>
+
+    <article class="pcard">
+      <div class="pc-head">
+        <div class="pc-av">T</div>
+        <div><h4>Tomás, 61</h4><p class="pc-tag">Occasional rider · secondary persona</p></div>
+      </div>
+      <blockquote>"I take the tram twice a month. I forget how it works every single time."</blockquote>
+      <ul class="pc-list">
+        <li><b>Context</b>Visits the city centre occasionally; bright outdoor light, reading glasses sometimes off.</li>
+        <li><b>Goal</b>Figure out which ticket covers his trip without asking a stranger.</li>
+        <li><b>Frustration</b>Small text, jargon zone names, fear of being fined for the wrong ticket.</li>
+        <li><b>Tech comfort</b>Moderate — needs larger type, plain language, and forgiving controls.</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="insight" style="margin-top:18px"><b>Why two, not five.</b> Nadia represents the high-frequency / low-attention case; Tomás the low-frequency / low-confidence case. A design that serves both extremes serves almost everyone in between. Tomás also pushes accessibility (type size, contrast, plain language) into the core design, not a bolt-on.</div>
+
+  <h3 style="margin:36px 0 6px;font-size:20px">Journey map — Nadia buys a single ride (current app)</h3>
+  <p class="subtitle" style="margin-bottom:18px">Mapping the existing experience makes the pain points impossible to ignore — and tells us exactly where to intervene.</p>
+  <div class="cc">
+    <div class="journey">
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>1 · Open app</th><th>2 · Find tickets</th><th>3 · Choose type</th><th>4 · Pay</th><th>5 · At the gate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Action</td><td>Unlocks phone on the platform, opens CityHop</td><td>Hunts for the "Buy" entry point among route info</td><td>Reads ticket names, guesses which zone she's in</td><td>Forced to sign in, then enter card, then sees price</td><td>Opens app again to show the ticket, unsure it's valid</td></tr>
+          <tr><td>Thinking</td><td>"Train's in 3 min."</td><td>"Where's the buy button?"</td><td>"Is 'Zone A' me? What's a day pass cost?"</td><td>"Why do I need an account to buy one ticket?"</td><td>"Did that even work?"</td></tr>
+          <tr><td>Emotion</td><td class="emoji-line">🙂</td><td class="emoji-line">😐</td><td class="emoji-line">😟</td><td class="emoji-line">😣</td><td class="emoji-line">😰</td></tr>
+          <tr><td>Pain point</td><td class="pain">—</td><td class="pain">Buy action buried (Finding 02)</td><td class="pain">Jargon + no recommended default (Finding 01)</td><td class="pain">Sign-in wall + hidden fare (Findings 02, 05)</td><td class="pain">No confident confirmation (Finding 04)</td></tr>
+          <tr><td>Opportunity</td><td class="opp">Resume to a "Buy" home</td><td class="opp">Persistent primary "Buy a ticket" CTA</td><td class="opp">Recommend "Single ride – €2.40" by default</td><td class="opp">Guest checkout, fare shown first</td><td class="opp">Big active-ticket screen with live validity</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">💡 The emotional curve dips hardest at stages 3–5 — exactly where our four MUST requirements land. The journey map didn't just describe the problem; it prioritised the work.</p>
+  </div>
+</section>
+
+<!-- ============================== 04 IA + FLOWS ============================== -->
+<section id="ia" class="section">
+  <h2><span class="num">04</span> Information architecture &amp; user flows</h2>
+  <p class="subtitle">The Structure plane. A card sort with 8 participants told us how riders actually group functions — so the navigation matches their mental model, not the transit authority's org chart.</p>
+
+  <div class="grid-2">
+    <div class="tile">
+      <span class="tk">Card sort result</span>
+      <h4>Riders think in 3 buckets</h4>
+      <p style="margin-bottom:8px">Open card sort (8 participants, 18 cards) converged on three top-level groups: <b>Buy</b>, <b>My tickets</b>, and <b>Travel info</b>. "Account" was consistently seen as settings, not a primary destination — confirming that the sign-in wall was an IA mistake.</p>
+      <div class="principle"><b>Match between system and the real world</b> (Nielsen #2): labels use rider language — "My tickets", not "Entitlements".</div>
+    </div>
+    <div class="tile">
+      <span class="tk">Sitemap</span>
+      <h4>Flat, shallow, buy-first</h4>
+      <p style="margin-bottom:6px">The primary task (buy) is reachable in one tap from anywhere. Depth is kept to two levels so users never feel lost — supporting <em>recognition rather than recall</em> (Nielsen #6).</p>
+    </div>
+  </div>
+
+  <div class="ascii" style="margin-top:18px"><span class="root">CityHop (home / tab bar)</span>
+│
+├── <span class="node">Buy a ticket</span>            ← primary, always one tap away
+│     ├── Single ride        (recommended default, fare shown)
+│     ├── Day pass
+│     ├── Multi-day / zones   (progressive disclosure — advanced)
+│     └── Review &amp; pay        (guest or account)
+│
+├── <span class="node">My tickets</span>
+│     ├── Active ticket       (large, live validity countdown)
+│     └── History / receipts
+│
+├── <span class="node">Travel info</span>
+│     ├── Routes &amp; times
+│     └── Service alerts
+│
+└── <span class="node">Account</span>  (settings — deliberately NOT in the buy path)
+      ├── Payment methods
+      ├── Saved routes
+      └── Accessibility &amp; text size
+</div>
+
+  <h3 style="margin:30px 0 6px;font-size:20px">Primary flow — buy a single ride (redesigned)</h3>
+  <p class="subtitle" style="margin-bottom:14px">Four taps, fare visible from tap one, no mandatory sign-in. Compare to the old flow's seven steps with a sign-in detour.</p>
+  <div class="cc">
+    <div class="flow">
+      <span class="step">Open app</span><span class="arr">→</span>
+      <span class="step">Tap "Buy a ticket"</span><span class="arr">→</span>
+      <span class="step">Single ride €2.40 <em>(pre-selected)</em></span><span class="arr">→</span>
+      <span class="step">Confirm &amp; pay (guest)</span><span class="arr">→</span>
+      <span class="step">Active ticket shown</span>
+    </div>
+    <div class="flow">
+      <span class="step alt">Need a different ticket?</span><span class="arr">→</span>
+      <span class="step alt">Expand "More ticket types"</span><span class="arr">→</span>
+      <span class="step">…rejoins Confirm &amp; pay</span>
+    </div>
+    <div class="principle"><b>Progressive disclosure.</b> The single ride — chosen by ~70% of sessions — is the default. Power options exist but stay folded away, so the common case is effortless and the rare case is still possible (Nielsen #8, aesthetic &amp; minimalist design).</div>
+    <div class="xlinks">
+      <a class="xlink" href="./index.html#structure">↗ Concept map: card-sorting / IA exercise</a>
+      <a class="xlink" href="./course.html#program">↗ Course: Structure &amp; Information Design (Sessions 7–8)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 05 WIREFRAMES ============================== -->
+<section id="wireframes" class="section">
+  <h2><span class="num">05</span> Wireframes — lo-fi → hi-fi</h2>
+  <p class="subtitle">The Skeleton plane, then the Surface plane. We sketch arrangement first (low fidelity, deliberately ugly so feedback targets layout not colour), validate it, then layer visual design on the validated structure.</p>
+
+  <div class="wire">
+    <p class="wire-cap"><b>Lo-fi · Buy screen</b> — paper-grade wireframe. The point is hierarchy and tap-target size, not aesthetics.</p>
+    <pre>┌─────────────────────────────┐
+│  ☰   CityHop          ⓘ      │  ← lightweight header
+├─────────────────────────────┤
+│                             │
+│   Buy a ticket              │  ← H1, plain language
+│                             │
+│  ┌───────────────────────┐  │
+│  │  ● Single ride        │  │  ← RECOMMENDED, pre-selected
+│  │    Valid 90 min       │  │     big card, full-width tap target
+│  │    € 2.40             │  │  ← FARE VISIBLE NOW (fixes Finding 02)
+│  └───────────────────────┘  │
+│  ┌───────────────────────┐  │
+│  │  ○ Day pass    € 6.00 │  │
+│  └───────────────────────┘  │
+│   ▸ More ticket types       │  ← progressive disclosure
+│                             │
+│  ┌───────────────────────┐  │
+│  │     Confirm & pay  →   │  │  ← 56px primary CTA, thumb zone
+│  └───────────────────────┘  │
+│        Continue as guest     │  ← no sign-in wall
+└─────────────────────────────┘</pre>
+  </div>
+
+  <div class="wire" style="margin-top:18px">
+    <p class="wire-cap"><b>Lo-fi · Active ticket screen</b> — the confidence payoff. Fixes Finding 04.</p>
+    <pre>┌─────────────────────────────┐
+│  ←  Active ticket           │
+├─────────────────────────────┤
+│   ✓  VALID                  │  ← icon + WORD, never colour alone
+│                             │
+│   Single ride               │
+│   ███████████  23:41 left   │  ← live countdown = system status
+│                             │
+│   [ animated validity band ]│  ← hard to screenshot/forge
+│                             │
+│   Show this to the inspector│
+└─────────────────────────────┘</pre>
+  </div>
+
+  <h3 style="margin:30px 0 10px;font-size:20px">Design rationale — why each choice</h3>
+  <div class="grid-auto">
+    <div class="tile">
+      <span class="tk">Fitts's Law</span>
+      <h4>Big targets, thumb zone</h4>
+      <p>The primary CTA is a 56px full-width button at the bottom — large W, short D for a thumb. Ticket cards are full-width too. On a moving train this is the difference between a tap and a mis-tap (Finding 03).</p>
+    </div>
+    <div class="tile">
+      <span class="tk">Hick's Law</span>
+      <h4>Fewer visible choices</h4>
+      <p>Only two ticket types show by default; the rest hide behind "More". Fewer options → faster decision. Decision time grows with the number of alternatives, so we reduced them for the common case.</p>
+    </div>
+    <div class="tile">
+      <span class="tk">Gestalt — proximity</span>
+      <h4>Grouping by spacing</h4>
+      <p>Fare sits inside the same card as the ticket name, so they read as one unit. Generous gaps separate distinct choices, so users perceive discrete options at a glance.</p>
+    </div>
+    <div class="tile">
+      <span class="tk">Visibility of status</span>
+      <h4>Fare &amp; validity always shown</h4>
+      <p>Price appears the instant a ticket is highlighted; the active ticket shows a live countdown. Nielsen heuristic #1 — the system keeps the user informed at every moment.</p>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-top:18px">
+    <h4 style="margin-top:0">Hi-fi · Surface plane — applying the visual system</h4>
+    <p style="color:var(--muted);font-size:14.5px">With structure validated, we apply the design tokens: a single brand hue, an 8px spacing scale, 12px corner radius, and a type ramp topping out at 28px for the H1 so Tomás can read it in sunlight. Described hi-fi:</p>
+    <ul style="color:var(--text);font-size:14px;line-height:1.7">
+      <li><b>Colour:</b> one primary (transit-blue) for actions, neutral greys for surfaces. AA contrast verified on every text/background pair (see §07).</li>
+      <li><b>Type:</b> 17px base body, 28px screen titles, 600-weight CTA label. Scales with the OS text-size setting.</li>
+      <li><b>Motion:</b> the validity band animates subtly — a status signal that's hard to fake with a screenshot, and reassuring at the gate.</li>
+      <li><b>Imagery:</b> none in the buy path. Aesthetic-and-minimalist (Nielsen #8) — nothing competes with the task.</li>
+    </ul>
+    <div class="xlinks">
+      <a class="xlink" href="./index.html#skeleton">↗ Concept map: wireframe sandbox</a>
+      <a class="xlink" href="./index.html#surface">↗ Concept map: design-tokens playground</a>
+      <a class="xlink" href="./index.html#fitts">↗ Concept map: try Fitts's Law</a>
+      <a class="xlink" href="./index.html#gestalt">↗ Concept map: Gestalt principles</a>
+      <a class="xlink" href="./course.html#program">↗ Course: Skeleton, Prototyping &amp; Wireframing (Sessions 6, 9–10)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 06 USABILITY TEST ============================== -->
+<section id="usability" class="section">
+  <h2><span class="num">06</span> Usability test &amp; SUS results</h2>
+  <p class="subtitle">A moderated usability test of the hi-fi prototype with 8 participants (5 Nadia-type, 3 Tomás-type). Three task scenarios, think-aloud protocol, success/time/error recorded, followed by the 10-item System Usability Scale questionnaire.</p>
+
+  <div class="cc">
+    <h4 style="margin-top:0">Test tasks</h4>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>#</th><th>Task scenario</th><th>Success criterion</th></tr></thead>
+        <tbody>
+          <tr><td>T1</td><td>"You need to get into town now. Buy a single ride."</td><td>Valid single-ride ticket purchased</td></tr>
+          <tr><td>T2</td><td>"You'll be sightseeing all day. Get the cheapest ticket that covers that."</td><td>Day pass selected &amp; purchased</td></tr>
+          <tr><td>T3</td><td>"An inspector asks for your ticket. Show it's valid."</td><td>Reaches active-ticket screen unprompted</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-top:18px">
+    <h4 style="margin-top:0">Results — before (old app) vs. after (prototype)</h4>
+    <div class="dtable">
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Old app</th><th>Redesign</th><th>Change</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>T1 success rate</td><td class="warn">63%</td><td class="good">100%</td><td class="good">+37 pts</td></tr>
+          <tr><td>T1 median time-to-purchase</td><td class="bad">71 s</td><td class="good">22 s</td><td class="good">−69%</td></tr>
+          <tr><td>T2 success rate</td><td class="warn">50%</td><td class="good">88%</td><td class="good">+38 pts</td></tr>
+          <tr><td>T3 success (found proof of validity)</td><td class="bad">38%</td><td class="good">100%</td><td class="good">+62 pts</td></tr>
+          <tr><td>Mean errors / participant</td><td class="bad">2.4</td><td class="good">0.5</td><td class="good">−79%</td></tr>
+          <tr><td>Simulated purchase abandonment</td><td class="bad">41%</td><td class="good">14%</td><td class="good">goal met (&lt;20%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:18px">
+    <div class="cc">
+      <h4 style="margin-top:0">System Usability Scale (SUS)</h4>
+      <p style="color:var(--muted);font-size:14px;margin-top:0">SUS converts ten 1–5 agree/disagree items into a 0–100 score. ~68 is the industry average; 80+ is the top ~10% of products (the "A" range).</p>
+      <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin:14px 0">
+        <div><div class="score-big">54</div><p style="color:var(--muted);font-size:13px;margin:2px 0 0">old app · grade F</p></div>
+        <div style="font-size:28px;color:var(--primary-2)">→</div>
+        <div><div class="score-big">82</div><p style="color:var(--muted);font-size:13px;margin:2px 0 0">redesign · grade A</p></div>
+      </div>
+      <div class="heur-bar" style="margin:6px 0"><span style="width:82%"></span></div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 0">+28 points — crossing from "below average / not acceptable" to "excellent".</p>
+    </div>
+    <div class="cc">
+      <h4 style="margin-top:0">Synthesis — what the data says</h4>
+      <ul style="color:var(--text);font-size:14px;line-height:1.7;margin:0;padding-left:18px">
+        <li><b>The goal was met:</b> simulated abandonment fell from 41% to 14%, under the 20% target.</li>
+        <li><b>Confidence was the biggest win:</b> T3 jumped 38% → 100%. Showing validity unmistakably ended the "did it work?" anxiety.</li>
+        <li><b>Speed followed structure:</b> the 69% time drop on T1 came from the recommended default + visible fare + guest checkout — not from "making it prettier".</li>
+        <li><b>Two issues remained</b> (see Iteration §08) — usability testing is never one-and-done.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="xlinks">
+    <a class="xlink" href="./index.html#heuristics">↗ Concept map: score Nielsen's heuristics</a>
+    <a class="xlink" href="./course.html#program">↗ Course: Usability Testing &amp; UI Evaluation (Sessions 13–14)</a>
+  </div>
+</section>
+
+<!-- ============================== 07 ACCESSIBILITY ============================== -->
+<section id="a11y" class="section">
+  <h2><span class="num">07</span> Accessibility audit — WCAG 2.2 AA</h2>
+  <p class="subtitle">Accessibility isn't a phase at the end — Tomás's needs shaped the design from §03 onward. This checklist is the formal verification against WCAG 2.2 Level AA. "Not extra; the baseline."</p>
+
+  <div class="check">
+    <div class="check-item">
+      <div class="ci-mark pass">✓</div>
+      <div class="ci-body"><h5>1.4.3 Contrast (Minimum)</h5><p>All body text ≥ 4.5:1 and large text/CTA ≥ 3:1 against their backgrounds. Transit-blue CTA on white measures 5.9:1.</p></div>
+      <div class="ci-tag pass">PASS</div>
+    </div>
+    <div class="check-item">
+      <div class="ci-mark pass">✓</div>
+      <div class="ci-body"><h5>1.4.1 Use of Color</h5><p>Ticket validity uses a ✓/✕ icon + the word "VALID"/"EXPIRED", not colour alone — fixes Finding 06.</p></div>
+      <div class="ci-tag pass">PASS</div>
+    </div>
+    <div class="check-item">
+      <div class="ci-mark pass">✓</div>
+      <div class="ci-body"><h5>2.5.5 / 2.5.8 Target Size</h5><p>Every interactive control is ≥ 48×48px with ≥ 8px spacing — comfortably above the 24px AA minimum (and aligned with Fitts).</p></div>
+      <div class="ci-tag pass">PASS</div>
+    </div>
+    <div class="check-item">
+      <div class="ci-mark pass">✓</div>
+      <div class="ci-body"><h5>1.4.4 Resize Text</h5><p>Layout reflows without loss of content up to 200% OS text size — verified for Tomás's larger-type setting.</p></div>
+      <div class="ci-tag pass">PASS</div>
+    </div>
+    <div class="check-item">
+      <div class="ci-mark pass">✓</div>
+      <div class="ci-body"><h5>4.1.2 Name, Role, Value</h5><p>Ticket cards are labelled radio controls; the CTA announces "Confirm and pay, button" to screen readers (VoiceOver/TalkBack tested).</p></div>
+      <div class="ci-tag pass">PASS</div>
+    </div>
+    <div class="check-item">
+      <div class="ci-mark pass">✓</div>
+      <div class="ci-body"><h5>3.3.1 / 3.3.3 Error Identification &amp; Suggestion</h5><p>A declined payment states what went wrong in text and offers a fix ("Card declined — try another card") — Nielsen #9, help users recover.</p></div>
+      <div class="ci-tag pass">PASS</div>
+    </div>
+    <div class="check-item">
+      <div class="ci-mark fixed">◐</div>
+      <div class="ci-body"><h5>2.4.7 Focus Visible</h5><p>Initial prototype lost the keyboard focus ring on the custom cards. Added a 2px high-contrast focus outline in iteration. <em>Resolved.</em></p></div>
+      <div class="ci-tag fixed">FIXED</div>
+    </div>
+    <div class="check-item">
+      <div class="ci-mark fixed">◐</div>
+      <div class="ci-body"><h5>1.3.1 Info &amp; Relationships</h5><p>Countdown was announced as raw digits. Added an aria-live label ("23 minutes remaining"). <em>Resolved in iteration.</em></p></div>
+      <div class="ci-tag fixed">FIXED</div>
+    </div>
+  </div>
+  <div class="insight" style="margin-top:18px"><b>Inclusive design dividend.</b> Every choice made for Tomás (bigger type, plain language, icon+label status, generous targets) also made the app faster for Nadia. Designing for the edges improved the centre — the core argument of Horton &amp; Quesenbery's <em>A Web for Everyone</em>.</div>
+  <div class="xlinks">
+    <a class="xlink" href="./index.html#a11y">↗ Concept map: accessibility simulator &amp; contrast checker</a>
+    <a class="xlink" href="./course.html#program">↗ Course: Accessibility &amp; Inclusive Design (Sessions 15–16)</a>
+  </div>
+</section>
+
+<!-- ============================== 08 ITERATION ============================== -->
+<section id="iteration" class="section">
+  <h2><span class="num">08</span> Iteration &amp; next steps</h2>
+  <p class="subtitle">UX is a loop, not a line. The test surfaced two residual problems; here's what changed in round two, plus where the project goes next.</p>
+
+  <div class="ba">
+    <div class="col before">
+      <h5>Round 1 — issues found</h5>
+      <ul>
+        <li><b>Day-pass discoverability:</b> 2 Tomás-type users didn't notice "More ticket types" and bought a single ride for an all-day trip.</li>
+        <li><b>Guest-checkout receipts:</b> guest buyers had no way to retrieve a receipt later for expenses.</li>
+        <li><b>Lost focus ring</b> on custom cards (WCAG 2.4.7).</li>
+        <li><b>Countdown</b> read as bare digits to screen readers (WCAG 1.3.1).</li>
+      </ul>
+    </div>
+    <div class="col after">
+      <h5>Round 2 — changes made</h5>
+      <ul>
+        <li><b>Surfaced a "Travelling all day?" hint</b> next to the single-ride card that expands the day-pass option in context.</li>
+        <li><b>Added an optional "email me the receipt" field</b> on the guest confirmation — no account required.</li>
+        <li><b>Restored a 2px high-contrast focus outline</b> on all interactive cards.</li>
+        <li><b>Added an aria-live region</b> announcing remaining validity in words.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-top:18px">
+    <h4 style="margin-top:0">Next steps</h4>
+    <div class="grid-auto">
+      <div class="tile"><span class="tk">Validate</span><h4>Round-2 test &amp; A/B</h4><p>Re-test the day-pass hint with occasional riders; A/B the guest-vs-account conversion in production.</p></div>
+      <div class="tile"><span class="tk">Could-haves</span><h4>Apple/Google Pay + saved routes</h4><p>Promote the COULD requirements now the core flow is proven — shave more seconds off repeat purchases.</p></div>
+      <div class="tile"><span class="tk">Measure live</span><h4>Funnel analytics</h4><p>Instrument the real funnel to confirm the lab's 14% abandonment holds in the wild across signal conditions.</p></div>
+      <div class="tile"><span class="tk">Multi-platform</span><h4>Smartwatch glance</h4><p>Explore a watch "active ticket" complication for the at-the-gate moment (Sessions 17–18, multi-platform).</p></div>
+    </div>
+    <div class="xlinks">
+      <a class="xlink" href="./index.html#mobile">↗ Concept map: mobile &amp; multi-platform</a>
+      <a class="xlink" href="./index.html#future">↗ Concept map: future trends &amp; ethics</a>
+      <a class="xlink" href="./course.html#program">↗ Course: User-Centered Design Project (Sessions 19–24)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 09 LEARNING OUTCOMES ============================== -->
+<section id="outcomes" class="section">
+  <h2><span class="num">09</span> Mapping to course learning outcomes</h2>
+  <p class="subtitle">Every learning objective from the syllabus, and the exact section of this project where it's demonstrated. This is the "show, don't tell" half of the assessment.</p>
+
+  <div class="lo-grid">
+    <div class="lo"><span class="lo-i">LO1</span><div><p>Understand the foundations &amp; user-centred design principles of HCI.</p><span class="lo-where">Structured the whole project on Garrett's 5 planes — see <a href="#overview">§1</a>.</span></div></div>
+    <div class="lo"><span class="lo-i">LO2</span><div><p>Create user personas and scenarios to inform interface design.</p><span class="lo-where">Two evidence-based personas + task scenarios — <a href="#personas">§3</a>, <a href="#usability">§6</a>.</span></div></div>
+    <div class="lo"><span class="lo-i">LO3</span><div><p>Conduct user research with appropriate methods.</p><span class="lo-where">Interviews, analytics, heuristic eval, MoSCoW synthesis — <a href="#discovery">§2</a>.</span></div></div>
+    <div class="lo"><span class="lo-i">LO4</span><div><p>Design and prototype user-friendly interfaces.</p><span class="lo-where">IA + flows + lo-fi → hi-fi wireframes with rationale — <a href="#ia">§4</a>, <a href="#wireframes">§5</a>.</span></div></div>
+    <div class="lo"><span class="lo-i">LO5</span><div><p>Design and run usability evaluations.</p><span class="lo-where">Task-based moderated test + SUS, before/after metrics — <a href="#usability">§6</a>.</span></div></div>
+    <div class="lo"><span class="lo-i">LO6</span><div><p>Apply accessibility &amp; inclusive design.</p><span class="lo-where">WCAG 2.2 AA audit; inclusive design shaped the core, not a bolt-on — <a href="#a11y">§7</a>.</span></div></div>
+    <div class="lo"><span class="lo-i">LO7</span><div><p>Reflect, iterate, and communicate results.</p><span class="lo-where">Iteration log, next steps, and this entire documented case study — <a href="#iteration">§8</a>.</span></div></div>
+  </div>
+</section>
+
+<!-- ============================== 10 REFERENCES ============================== -->
+<section id="references" class="section">
+  <h2><span class="num">10</span> References</h2>
+  <p class="subtitle">The course's core sources that ground each decision above.</p>
+  <div class="refs">
+    <div class="ref"><b>Garrett, J. J. (2011).</b> <em>The Elements of User Experience: User-Centered Design for the Web and Beyond</em> (2nd ed.). New Riders. — the five-planes framework structuring this project.</div>
+    <div class="ref"><b>Nielsen, J. (1994).</b> <em>10 Usability Heuristics for User Interface Design.</em> Nielsen Norman Group. — visibility of status, error recovery, minimalist design.</div>
+    <div class="ref"><b>Fitts, P. M. (1954).</b> The information capacity of the human motor system in controlling the amplitude of movement. <em>Journal of Experimental Psychology, 47</em>(6). — target size &amp; distance rationale.</div>
+    <div class="ref"><b>Hick, W. E. (1952).</b> On the rate of gain of information. <em>Quarterly Journal of Experimental Psychology, 4</em>(1). — limiting visible choices in the buy flow.</div>
+    <div class="ref"><b>Krug, S. (2010).</b> <em>Rocket Surgery Made Easy: The Do-It-Yourself Guide to Finding and Fixing Usability Problems.</em> New Riders. — small, frequent usability tests.</div>
+    <div class="ref"><b>Brooke, J. (1996).</b> SUS: A "quick and dirty" usability scale. In <em>Usability Evaluation in Industry.</em> — the System Usability Scale used in §6.</div>
+    <div class="ref"><b>Nielsen Norman Group.</b> <em>When to Use Which User-Experience Research Methods.</em> — the method-selection framework in §2.</div>
+    <div class="ref"><b>Horton, S. &amp; Quesenbery, W. (2014).</b> <em>A Web for Everyone: Designing Accessible User Experiences.</em> Rosenfeld Media. — inclusive-design argument in §7.</div>
+    <div class="ref"><b>W3C (2023).</b> <em>Web Content Accessibility Guidelines (WCAG) 2.2.</em> — the AA success criteria audited in §7.</div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+  <p>A worked-example project for <strong>UX, UI &amp; Human–Computer Interaction</strong> · BCSAI · IE University.</p>
+  <p>CityHop is a fictional product created for teaching; figures are illustrative of a realistic study. Cross-linked to the <a href="./index.html#top">interactive concept map</a> and <a href="./course.html">course structure</a>.</p>
+  <p class="foot-credit">No analytics. No cookies. View source — it's all just HTML &amp; CSS.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
