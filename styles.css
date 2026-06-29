@@ -439,6 +439,17 @@ h1 em { font-style: italic; color: var(--accent); }
 .future-card .fc-up { background: color-mix(in srgb, var(--good) 18%, transparent); border: 1px solid var(--good); color: var(--good); }
 .future-card .fc-down { background: color-mix(in srgb, var(--bad) 18%, transparent); border: 1px solid var(--bad); color: var(--bad); }
 
+/* ============ COURSEWORK ============ */
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.proj-card {
+  display: block; text-decoration: none; color: var(--text);
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+  transition: transform .2s, border-color .2s;
+}
+.proj-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+.proj-card strong { display: block; margin: 0 0 6px; font-size: 18px; }
+.proj-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
 /* ============ QUIZ ============ */
 .quiz { display: grid; gap: 14px; }
 .quiz-q {

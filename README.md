@@ -22,19 +22,13 @@ A live, interactive companion site for the **UX, UI & Human–Computer Interacti
 
 Just open `index.html` in a browser — there's no build step.
 
-## Deploy to GitHub Pages
+## Coursework
 
-1. Create a new GitHub repo (e.g. `uxui-concepts`).
-2. From this folder:
-   ```bash
-   git init
-   git add .
-   git commit -m "Interactive UX/UI/HCI concept map"
-   git branch -M main
-   git remote add origin https://github.com/<your-user>/uxui-concepts.git
-   git push -u origin main
-   ```
-3. In the repo on github.com → **Settings → Pages** → Source: *Deploy from a branch* → Branch: `main` / root → **Save**.
-4. The site will be live at `https://<your-user>.github.io/uxui-concepts/` within ~1 minute.
+Hands-on projects built for this course:
 
-The included `.github/workflows/pages.yml` will also auto-deploy on every push.
+- [Aim For The Future](https://andreaisabelmontana.github.io/aim-for-the-future.github.io/) — interactive Three.js resume
+- [Alma De María](https://andreaisabelmontana.github.io/Alma-De-Maria/) — responsive catalogue for an artisan jewelry brand
+- [Arte De La Montaña](https://andreaisabelmontana.github.io/Arte-De-La-Montana/) — browser-only painting gallery
+- [Encore — Live Music Map](https://andreaisabelmontana.github.io/Google-Maps-Awards-2025/) — a map of live-music memory
+- [Portfolio Studies](https://andreaisabelmontana.github.io/portfolio-studies/) — personal-portfolio site studies
+- [Polar Club](https://andreaisabelmontana.github.io/polar-club/) — a playful login flow on a 3D iceberg
